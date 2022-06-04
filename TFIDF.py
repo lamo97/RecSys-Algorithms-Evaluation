@@ -1,4 +1,5 @@
 # In[1]: Setup
+import re
 import pandas as pd
 import csv
 
@@ -50,7 +51,7 @@ fields.append('plot')
 
 # In[]: 
 # ********************************
-# Rappresentazione: TFIDF | Genre
+# Rappresentazione: TFIDF | Genres
 # ********************************
 ca_config.add_single_config('genres', 
                             ca.FieldConfig(ca.SkLearnTfIdf(),
@@ -62,19 +63,6 @@ ca.ContentAnalyzer(config = ca_config).fit()
 
 # inserimento del campo rappresentato nella lista
 fields.append('genres')
-
-# In[]: Rappresentazione TFIDF | Multipla
-ratings = ca.Ratings(ca.CSVFile(path + 'ratings.csv'))
-centroid_vector = rs.CentroidVector({'plot':['tfidf'], 'genres': ['tfidf']}, similarity = rs.CosineSimilarity())
-
-train_list, test_list = rs.KFoldPartitioning(n_splits = 2).split_all(ratings)                            
-first_training_set = train_list[0]
-
-cbrs = rs.ContentBasedRS(centroid_vector, first_training_set, (path + '/movies_codified'))
-first_test_set = test_list[0]
-rank = cbrs.fit_rank(first_test_set, user_id_list = ['8', '2', '1'], n_recs = 3)
-
-print(rank)
 
 # In[]:
 # --------------------------------
@@ -106,6 +94,23 @@ rank = cbrs.fit_rank(first_test_set, user_id_list = ['8', '2', '1'], n_recs = 3)
 
 print(rank)
 
+result_list = []
+for train_set, test_set in zip(train_list, test_list):
+    cbrs = rs.ContentBasedRS(centroid_vector, train_set, (path + '/movies_codified'))
+    rank_to_append = cbrs.fit_rank(test_set)
+    result_list.append(rank_to_append)
+
+for result in result_list:
+    print(result)
+
+# we save the result of each split numbered
+for i, rank_generated in enumerate(result_list, start=1):
+    rank_generated.to_csv(file_name=f'rank_split_{i}')
+
+# we save  the result of each split numbered
+for i, test_set in enumerate(test_list, start=1):
+    test_set.to_csv(file_name=f'truth_split_{i}')
+
 # In[]:
 # --------------------------------
 # Logistic Regression
@@ -134,7 +139,19 @@ cbrs = rs.ContentBasedRS(logistic_regression, first_training_set, (path + '/movi
 first_test_set = test_list[0]
 rank = cbrs.fit_rank(first_test_set, user_id_list = ['8', '2', '1'], n_recs = 3)
 
-print(rank)
+result_list = []
+for train_set, test_set in zip(train_list, test_list):
+    cbrs = rs.ContentBasedRS(centroid_vector, train_set, (path + '/movies_codified'))
+    rank_to_append = cbrs.fit_rank(test_set)
+    result_list.append(rank_to_append)
+
+# we save the result of each split numbered
+for i, rank_generated in enumerate(result_list, start=1):
+    rank_generated.to_csv(file_name=f'rank_split_2{i}')
+
+# we save  the result of each split numbered
+for i, test_set in enumerate(test_list, start=1):
+    test_set.to_csv(file_name=f'truth_split_2{i}')
 
 # In[]:
 # --------------------------------
@@ -166,4 +183,8 @@ rank = cbrs.fit_rank(first_test_set, user_id_list = ['8', '2', '1'], n_recs = 3)
 
 print(rank)
 
+# In[]:
+# --------------------------------
+# Linear SVM
+# --------------------------------
 # %%
