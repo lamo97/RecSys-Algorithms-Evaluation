@@ -15,6 +15,6 @@ https://colab.research.google.com/drive/1ym8pspwGS-8vxAUu9xsdpTcV7LjHtzEe?usp=sh
 5o esempio
 https://colab.research.google.com/drive/1pOXvRY8lW9PQ2VmhQUmtZX4Y-MJfs1Yi?usp=sharing
 
-Classi e Parametri per le Rappresentazioni:
+Classi e Parametri per le Rappresentazioni: 
 https://various-tax-737.notion.site/ClayRS-Representations-Classes-a31d730f141342bd8be5f9ac765e92ea
 
