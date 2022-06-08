@@ -1,19 +1,10 @@
-#In[]:
-import file_reformat as fr
+#In[0]: Converte il dataset 'ratings.dat' in .csv
+import DatasetConversion as dc
 import pandas as pd
 
-fr.toCSV()
+dc.convertToCsv()
 
-path = 'C:/Users/glamo/Desktop/Repository/RecSys-Algorithms-Evaluation/Dataset/Movielens 1M/CSV/'
-
-moviesDF = pd.read_csv(path + 'movies.csv', encoding='utf-8', index_col='id')
-detailsDF = pd.read_csv(path + 'movies_details.csv', encoding='utf-8', index_col='item')
-
-print(moviesDF)
-print(detailsDF)
-
-pd.merge(moviesDF, detailsDF, how='inner', on=['id', 'item'])
-# In[1]: Setup
+# In[1]: Setup con Dataset da 1M
 # correzione dell'ordine di stampa
 import functools
 from operator import rshift
@@ -25,18 +16,18 @@ from clayrs import recsys as rs
 from clayrs import evaluation as eva
 
 # path del dataset
-path = 'Dataset/Movielens 100k/'
+path = 'C:/Users/glamo/Desktop/Repository/RecSys-Algorithms-Evaluation/Dataset/Movielens 1M/'
 
 # apertura del file contenente i film
-items = open(path + 'items_info.json')
+items = open(path + 'movies-ml1m.csv')
 
 # apertura del file con i ratings
 ratings = open(path + 'ratings.csv')
 
 # configurazione del content analyzer
 ca_config = ca.ItemAnalyzerConfig(
-    source = ca.JSONFile(path + 'items_info.json'),
-    id = 'movielens_id',
+    source = ca.CSVFile(path + 'movies-ml1m.csv'),
+    id = 'item',
     output_directory = path + 'movies_codified/'
 )
 
@@ -46,11 +37,11 @@ fields = []
 representation = 'tfidf'
 
 # In[]: 
-# ********************************
-# Rappresentazione: TFIDF | Plot
-# ********************************
+# **************************************
+# Rappresentazione: TFIDF | Description
+# **************************************
 ca_config.add_single_config(
-    'plot', 
+    'description', 
     ca.FieldConfig(
         ca.SkLearnTfIdf(),
         preprocessing=ca.NLTK(stopwords_removal=True, lemmatization=True),
@@ -62,27 +53,44 @@ ca_config.add_single_config(
 ca.ContentAnalyzer(config = ca_config).fit()
 
 # inserimento del campo rappresentato nella lista
-fields.append('plot')
+fields.append('description')
 
 # In[]: 
 # ********************************
 # Rappresentazione: TFIDF | Genres
 # ********************************
-ca_config.add_single_config('genres', 
-                            ca.FieldConfig(ca.SkLearnTfIdf(),
-                                            preprocessing=ca.NLTK(stopwords_removal=True, lemmatization=True),
-                                            id='tfidf'))
+ca_config.add_single_config(
+    'genres',
+    ca.FieldConfig(
+        ca.SkLearnTfIdf(),
+        preprocessing=ca.NLTK(stopwords_removal=True, lemmatization=True),
+        id='tfidf'
+    )
+)
 
-# serializzazione degli item
 ca.ContentAnalyzer(config = ca_config).fit()
-
-# inserimento del campo rappresentato nella lista
 fields.append('genres')
 
+# In[]: 
+# *******************************
+# Rappresentazione: TFIDF | Tags
+# *******************************
+ca_config.add_single_config(
+    'tags', 
+    ca.FieldConfig(
+        ca.SkLearnTfIdf(),
+        preprocessing=ca.NLTK(stopwords_removal=True, lemmatization=True),
+        id='tfidf'
+    )
+)
+
+ca.ContentAnalyzer(config = ca_config).fit()
+fields.append('tags')
+
 # In[]:
-# --------------------------------
+# ----------------
 # Centroid Vector
-# --------------------------------
+# ----------------
 print('Fields:', fields)
 print('Representation:', representation)
 print('Algorithm: Centroid Vector')
@@ -127,9 +135,9 @@ for i, test_set in enumerate(test_list, start=1):
     test_set.to_csv(file_name=f'truth_split_{i}')
 
 # In[]:
-# --------------------------------
+# --------------------
 # Logistic Regression
-# --------------------------------
+# --------------------
 print('Fields:', fields)
 print('Representation:', representation)
 print('Algorithm: Logistic Regression')
@@ -169,9 +177,9 @@ for i, test_set in enumerate(test_list, start=1):
     test_set.to_csv(file_name=f'truth_split_2{i}')
 
 # In[]:
-# --------------------------------
+# --------------
 # Random Forest
-# --------------------------------
+# --------------
 print('Fields:', fields)
 print('Representation:', representation)
 print('Algorithm: Random Forest')
@@ -203,36 +211,36 @@ for train_set, test_set in zip(train_list, test_list):
     result_list.append(rank_to_append)
 
 # In[]:
-# --------------------------------
-# Linear SVM
-# --------------------------------
+# -----------
+# Support Vector Centroid
+# -----------
 print('Fields:', fields)
 print('Representation:', representation)
-print('Algorithm: Linear SVM')
+print('Algorithm: Support Vector Centroid')
 
 n_fields = len(fields)
 ratings = ca.Ratings(ca.CSVFile(path + 'ratings.csv'))
 
 if(n_fields == 1):
-    linear_svm = rs.ClassifierRecommender( {    fields[0]: [representation]}, rs.SkSVC())
+    svc = rs.ClassifierRecommender({ fields[0]: [representation]}, rs.SkSVC())
 elif(n_fields == 2):
-    linear_svm = rs.ClassifierRecommender( {    fields[0]: [representation],
-                                                fields[1]: [representation]}, rs.SkSVC())
+    svc = rs.ClassifierRecommender({ fields[0]: [representation],
+                                            fields[1]: [representation]}, rs.SkSVC())
 elif(n_fields == 3):
-    linear_svm = rs.ClassifierRecommender( {    fields[0]: [representation],
-                                                fields[1]: [representation],
-                                                fields[2]: [representation]}, rs.SkSVC())
+    svc = rs.ClassifierRecommender({ fields[0]: [representation],
+                                            fields[1]: [representation],
+                                            fields[2]: [representation]}, rs.SkSVC())
 
 train_list, test_list = rs.KFoldPartitioning(n_splits = 2).split_all(ratings)                      
 first_training_set = train_list[0]
 
-cbrs = rs.ContentBasedRS(linear_svm, first_training_set, (path + '/movies_codified'))
+cbrs = rs.ContentBasedRS(svc, first_training_set, (path + '/movies_codified'))
 first_test_set = test_list[0]
 rank = cbrs.fit_rank(first_test_set, user_id_list = ['8', '2', '1'], n_recs = 3)
 
 result_list = []
 for train_set, test_set in zip(train_list, test_list):
-    cbrs = rs.ContentBasedRS(linear_svm, train_set, (path + '/movies_codified'))
+    cbrs = rs.ContentBasedRS(svc, train_set, (path + '/movies_codified'))
     rank_to_append = cbrs.fit_rank(test_set)
     result_list.append(rank_to_append)
 
@@ -245,9 +253,9 @@ for i, test_set in enumerate(test_list, start=1):
     test_set.to_csv(file_name=f'truth_split_2{i}')
 
 # In[]:
-# --------------------------------
+# -----
 # K-NN
-# --------------------------------
+# -----
 print('Fields:', fields)
 print('Representation:', representation)
 print('Algorithm: K-NN')
@@ -256,12 +264,12 @@ n_fields = len(fields)
 ratings = ca.Ratings(ca.CSVFile(path + 'ratings.csv'))
 
 if(n_fields == 1):
-    knn = rs.ClassifierRecommender( {   fields[0]: [representation]}, rs.SkKNN())
+    knn = rs.ClassifierRecommender({    fields[0]: [representation]}, rs.SkKNN())
 elif(n_fields == 2):
-    knn = rs.ClassifierRecommender( {   fields[0]: [representation],
+    knn = rs.ClassifierRecommender({    fields[0]: [representation],
                                         fields[1]: [representation]}, rs.SkKNN())
 elif(n_fields == 3):
-    knn = rs.ClassifierRecommender( {   fields[0]: [representation],
+    knn = rs.ClassifierRecommender({    fields[0]: [representation],
                                         fields[1]: [representation],
                                         fields[2]: [representation]}, rs.SkKNN())
 
@@ -282,9 +290,9 @@ for entry in result_list:
     print(entry)
 
 # In[]:
-# --------------------------------
+# --------------
 # Decision Tree
-# --------------------------------
+# --------------
 print('Fields:', fields)
 print('Representation:', representation)
 print('Algorithm: Decision Tree')
@@ -293,12 +301,12 @@ n_fields = len(fields)
 ratings = ca.Ratings(ca.CSVFile(path + 'ratings.csv'))
 
 if(n_fields == 1):
-    decision_tree = rs.ClassifierRecommender( { fields[0]: [representation]}, rs.SkDecisionTree())
+    decision_tree = rs.ClassifierRecommender({  fields[0]: [representation]}, rs.SkDecisionTree())
 elif(n_fields == 2):
-    decision_tree = rs.ClassifierRecommender( { fields[0]: [representation],
+    decision_tree = rs.ClassifierRecommender({  fields[0]: [representation],
                                                 fields[1]: [representation]}, rs.SkDecisionTree())
 elif(n_fields == 3):
-    decision_tree = rs.ClassifierRecommender( { fields[0]: [representation],
+    decision_tree = rs.ClassifierRecommender({  fields[0]: [representation],
                                                 fields[1]: [representation],
                                                 fields[2]: [representation]}, rs.SkDecisionTree())
 
@@ -319,23 +327,23 @@ for entry in result_list:
     print(entry)
 
 # In[]:
-# --------------------------------
-# Gaussian Preocess
-# --------------------------------
+# -----------------
+# Gaussian Process
+# -----------------
 print('Fields:', fields)
 print('Representation:', representation)
-print('Algorithm: Gaussian Preocess')
+print('Algorithm: Gaussian Process')
 
 n_fields = len(fields)
 ratings = ca.Ratings(ca.CSVFile(path + 'ratings.csv'))
 
 if(n_fields == 1):
-    gaussian_process = rs.ClassifierRecommender( {  fields[0]: [representation]}, rs.SkGaussianProcess())
+    gaussian_process = rs.ClassifierRecommender({   fields[0]: [representation]}, rs.SkGaussianProcess())
 elif(n_fields == 2):
-    gaussian_process = rs.ClassifierRecommender( {  fields[0]: [representation],
+    gaussian_process = rs.ClassifierRecommender({   fields[0]: [representation],
                                                     fields[1]: [representation]}, rs.SkGaussianProcess())
 elif(n_fields == 3):
-    gaussian_process = rs.ClassifierRecommender( {  fields[0]: [representation],
+    gaussian_process = rs.ClassifierRecommender({   fields[0]: [representation],
                                                     fields[1]: [representation],
                                                     fields[2]: [representation]}, rs.SkGaussianProcess())
 
@@ -355,9 +363,9 @@ for train_set, test_set in zip(train_list, test_list):
 for entry in result_list:
     print(entry)
 # In[]:
-# --------------------------------
+# --------------------------------------
 # Stochastic Gradient Descent Regression
-# --------------------------------
+# --------------------------------------
 print('Fields:', fields)
 print('Representation:', representation)
 print('Algorithm: Stochastic Gradient Descent Regression')
@@ -366,14 +374,14 @@ n_fields = len(fields)
 ratings = ca.Ratings(ca.CSVFile(path + 'ratings.csv'))
 
 if(n_fields == 1):
-    gradient_descent = rs.ClassifierRecommender( {  fields[0]: [representation]}, rs.SkLinearRegression.())
+    gradient_descent = rs.LinearPredictor({ fields[0]: [representation]}, rs.SkSGDRegressor())
 elif(n_fields == 2):
-    gradient_descent = rs.ClassifierRecommender( {  fields[0]: [representation],
-                                                    fields[1]: [representation]}, rs.SkGaussianProcess())
+    gradient_descent = rs.LinearPredictor({ fields[0]: [representation],
+                                            fields[1]: [representation]}, rs.SkSGDRegressor())
 elif(n_fields == 3):
-    gradient_descents = rs.ClassifierRecommender( {  fields[0]: [representation],
-                                                    fields[1]: [representation],
-                                                    fields[2]: [representation]}, rs.SkGaussianProcess())
+    gradient_descents = rs.LinearPredictor({fields[0]: [representation],
+                                            fields[1]: [representation],
+                                            fields[2]: [representation]}, rs.SkSGDRegressor())
 
 train_list, test_list = rs.KFoldPartitioning(n_splits = 2).split_all(ratings)                      
 first_training_set = train_list[0]
@@ -392,9 +400,9 @@ for entry in result_list:
     print(entry)
     
 # In[]:
-# --------------------------------
+# -----------------
 # Ridge Regression
-# --------------------------------
+# -----------------
 print('Fields:', fields)
 print('Representation:', representation)
 print('Algorithm: Ridge Regression')
@@ -403,14 +411,14 @@ n_fields = len(fields)
 ratings = ca.Ratings(ca.CSVFile(path + 'ratings.csv'))
 
 if(n_fields == 1):
-    ridge_reg = rs.ClassifierRecommender( {  fields[0]: [representation]}, rs.SkRidge())
+    ridge_reg = rs.LinearPredictor({    fields[0]: [representation]}, rs.SkRidge())
 elif(n_fields == 2):
-    ridge_reg = rs.ClassifierRecommender( {  fields[0]: [representation],
-                                                    fields[1]: [representation]}, rs.SkRidge())
+    ridge_reg = rs.LinearPredictor({    fields[0]: [representation],
+                                        fields[1]: [representation]}, rs.SkRidge())
 elif(n_fields == 3):
-    ridge_reg = rs.ClassifierRecommender( {  fields[0]: [representation],
-                                                    fields[1]: [representation],
-                                                    fields[2]: [representation]}, rs.SkRidge())
+    ridge_reg = rs.LinearPredictor({    fields[0]: [representation],
+                                        fields[1]: [representation],
+                                        fields[2]: [representation]}, rs.SkRidge())
 
 train_list, test_list = rs.KFoldPartitioning(n_splits = 2).split_all(ratings)                      
 first_training_set = train_list[0]
