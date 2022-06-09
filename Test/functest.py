@@ -28,69 +28,22 @@ representation = 'Word2Vec'
 # inserimento del campo rappresentato nella lista
 fields.append('plot')
 
+
+
 # In[]:
+val = ca.Gensim()
+print('Valore: ', val, '\tTipo: ', type(val))
 
-value = ca.GensimLatentSemanticAnalysis()
-print(type(value))
+val = ca.GensimDoc2Vec()
+print('Valore: ', val, '\tTipo: ', type(val))
 
-value = ca.SkLearnTfIdf()
-print(type(value))
 
-value = ca.WordEmbeddingTechnique(ca.GensimLatentSemanticAnalysis())
-print(type(value))
+val = ca.Sentence2DocEmbedding(ca.GensimLatentSemanticAnalysis(), combining_technique=ca.Centroid())
+print('Valore: ', val, '\tTipo: ', type(val))
 
-value = ca.Gensim('glove-twitter-50')
-print(type(value))
+#val = ca.Sentence2DocEmbedding(ca.GensimFastText(), combining_technique=ca.Centroid())
+#print('Valore: ', val, '\tTipo: ', type(val))
 
-value = ca.Word2DocEmbedding(ca.SkLearnTfIdf(), combining_technique=ca.Centroid())
-print(type(value))
 
-value = ca.Sentence2DocEmbedding(ca.Gensim(), combining_technique=ca.Centroid())
-print(type(value))
-
-value = ca.Sentence2WordEmbedding(ca.Gensim())
-print(type(value))
-
-value = ca.GensimRandomIndexing()
-print(type(value))
-
-value = ca.GensimFastText()
-print(type(value))
-
-value = ca.GensimDoc2Vec()
-print(type(value))
-
-value = ca.WhooshTfIdf()
-print(type(value))
-
-value = ca.Sbert()
-print(type(value))
-
-value = ca.SentenceEmbeddingTechnique(ca.Gensim())
-print(type(value))
-
-# value = ca.DBPediaMappingTechnique(ca.GensimLatentSemanticAnalysis(), 'plot')
-# print(type(value))
-
-value = ca.GensimLDA()
-print(type(value))
-
-value = ca.Word2DocEmbedding(ca.GensimFastText(), combining_technique='None')
-print(type(value))
-
-value = rs.SkRidge()
-print(type(value))
-
-#value = rs.LinearPredictor()
-#print(type(value))
-
-value = rs.LinearPredictor({fields[0]: [representation]}, rs.SkSVC())
-print(type(value))
-
-value = rs.CentroidVector({fields[0]: [representation]}, similarity = rs.CosineSimilarity())
-print(type(value))
-
-value = rs.ClassifierRecommender({fields[0]: [representation]}, rs.SkSVC())
-print(type(value))
 
 # %%
