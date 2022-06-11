@@ -119,7 +119,7 @@ ca_config.add_multiple_config(
         
         # Doc2Vec 
         ca.FieldConfig(
-            ca.WordEmbeddingTechnique(ca.GensimDoc2Vec()),
+            ca.DocumentEmbeddingTechnique(ca.GensimDoc2Vec()),
             ca.NLTK(stopwords_removal=True, lemmatization=True),
             id='Doc2Vec'
         ),
