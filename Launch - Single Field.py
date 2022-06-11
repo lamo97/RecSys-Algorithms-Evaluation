@@ -126,6 +126,7 @@ ca_config.add_multiple_config(
 
         # GensimLDA 
         ca.FieldConfig(
+            # Probabilmente LDA classifica DOCUMENTI interni e non parole (tenere conto anche del campo)
             ca.SentenceEmbeddingTechnique(ca.GensimLDA()),
             ca.NLTK(stopwords_removal=True, lemmatization=True),
             id='GensimLDA'
