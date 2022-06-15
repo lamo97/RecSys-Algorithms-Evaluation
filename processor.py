@@ -1,4 +1,5 @@
 import os
+import csv
 
 dir = 'C:/Users/glamo/Desktop/Repository/RecSys-Algorithms-Evaluation/Eval Results/'
 
@@ -22,3 +23,12 @@ for filename in os.listdir(dir):
 
 print(parameters)
 
+df = {}
+
+for field in parameters['fields']:
+    for filename in os.listdir(dir):
+        filename_split = filename.split(" - ")
+        if(filename_split[2] == field):
+            file = open(filename)
+            result_file = csv.reader(file)
+            for row in 

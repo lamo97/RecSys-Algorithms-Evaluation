@@ -79,3 +79,31 @@ movies_ca_config.add_single_config(
 mv = pd.read_csv(path + 'movies.csv', encoding='latin1')
 ca.ContentAnalyzer(config = movies_ca_config).fit()
 
+# In[]: 
+from clayrs import content_analyzer as ca
+
+# configurazione del content analyzer
+dataset_path = 'C:/Users/glamo/Desktop/Repository/RecSys-Algorithms-Evaluation/Dataset/Movielens 100k/'
+path = 'C:/Users/glamo/Desktop/Repository/RecSys-Algorithms-Evaluation/Test/'
+
+ca_config = ca.ItemAnalyzerConfig(
+    source = ca.JSONFile(dataset_path + 'items_info.json'),
+    id = 'movielens_id',
+    output_directory = path + 'movies_codified/'
+)
+
+# In[]: Word2Vec 
+
+ca_config.add_single_config(
+    'plot',
+    ca.FieldConfig(
+        ca.WordEmbeddingTechnique(ca.GensimWord2Vec('glove-twitter-50')),
+        ca.NLTK(stopwords_removal=True, lemmatization=True),
+        id='Word2Vec'
+    )
+) 
+
+# %%
+ca.ContentAnalyzer(config = ca_config).fit()
+
+# %%

@@ -147,4 +147,6 @@ current_run = {
     "methodologyID" : ""
 }
 
-print(current_run["fields_num"])
+print(current_run[fields_num])
+
+# %%
