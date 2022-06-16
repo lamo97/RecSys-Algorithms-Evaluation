@@ -97,7 +97,7 @@ ca_config = ca.ItemAnalyzerConfig(
 ca_config.add_single_config(
     'plot',
     ca.FieldConfig(
-        ca.WordEmbeddingTechnique(ca.GensimWord2Vec('glove-twitter-50')),
+        ca.WordEmbeddingTechnique(ca.GensimWord2Vec('glove-twitter-50.kv')),
         ca.NLTK(stopwords_removal=True, lemmatization=True),
         id='Word2Vec'
     )
@@ -105,5 +105,24 @@ ca_config.add_single_config(
 
 # %%
 ca.ContentAnalyzer(config = ca_config).fit()
+
+# %%
+from clayrs import recsys as rs
+centroid_vector = rs.CentroidVector({'plot':'Word2Vec'}, similarity = rs.CosineSimilarity())
+
+ratings = ca.Ratings(ca.CSVFile(dataset_path + 'ratings.csv'))
+
+kf = rs.KFoldPartitioning(n_splits=2)
+train_list, test_list = kf.split_all(ratings)
+
+# Risultati con TestItems
+result_list = []
+
+for train_set, test_set in zip(train_list, test_list):
+    cbrs = rs.ContentBasedRS(centroid_vector, train_set, (dataset_path + '/movies_codified'))
+    rank_to_append = cbrs.fit_rank(test_set, methodology=rs.TestItemsMethodology())
+    result_list.append(rank_to_append)
+    #####################
+    rank_to_append.to_csv('C:/Users/glamo/Desktop/Repository/RecSys-Algorithms-Evaluation/RanksCSVs/', ('score - '+ 'Word2Vec' + ' - ' +  'Centroid Vector'))
 
 # %%

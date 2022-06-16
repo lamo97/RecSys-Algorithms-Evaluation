@@ -30,15 +30,6 @@ else:
         output_directory = dataset_path + 'movies_codified/'
     )
 
-# In[]: Manual
-dataset_path = 'C:/Users/glamo/Desktop/Repository/RecSys-Algorithms-Evaluation/Dataset/Movielens 100k/'
-
-ca_config = ca.ItemAnalyzerConfig(
-    source = ca.JSONFile(dataset_path + 'items_info.json'),
-    id = 'movielens_id',
-    output_directory = dataset_path + 'movies_codified/'
-)
-
 # In[]: SK-TFIDF
 for field_name in fields:
     ca_config.add_single_config(
@@ -71,7 +62,7 @@ for field_name in fields:
             id='Doc2Vec'
         )
     ) 
-
+    
 # In[]: GensimLDA 
 for field_name in fields:
     ca_config.add_single_config(
@@ -143,6 +134,7 @@ for field_name in fields:
             id='Sentence2Doc-Sbert'
         )
     )
+
 
 # In[]: Serializzazione degli item delle rappresentazioni selezionate
 ca.ContentAnalyzer(config = ca_config).fit()

@@ -51,7 +51,7 @@ def predict(algorithm, run):
             rank_to_append = cbrs.fit_rank(test_set, methodology=rs.TestItemsMethodology())
             result_list.append(rank_to_append)
             #####################
-            rank_to_append.to_csv('C:/Users/glamo/Desktop/Repository/RecSys-Algorithms-Evaluation', ('score'+ run['representation'] + ' - ' +  run['algorithm'] + '.csv'))
+            rank_to_append.to_csv('C:/Users/glamo/Desktop/Repository/RecSys-Algorithms-Evaluation/RanksCSVs/', ('score - '+ run['representation'] + ' - ' +  run['algorithm']))
 
         runEV.evaluate(result_list, test_list, run)
 
