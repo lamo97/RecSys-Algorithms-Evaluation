@@ -1,9 +1,9 @@
-TestItems: Precision@5,TestItems: Precision@5,AllItems: Precision@10,AllItems: Precision@20
-TF-IDF + Centroid Vector
-TF-IDF + Logistic Regression
-TF-IDF + Random Forest
-TF-IDF + SVC
-Word2Vec + Centroid Vector
-Word2Vec + Logistic Regression
-Word2Vec + Random Forest
-Word2Vec Word2Vec+ SVC
+Representation + Algorithm,TestItems: Precision@5,TestItems: Precision@5,AllItems: Precision@10,AllItems: Precision@20
+TF-IDF + Centroid Vector,0,0,0,0
+TF-IDF + Logistic Regression,0,0,0,0
+TF-IDF + Random Forest,0,0,0,0
+TF-IDF + SVC,0,0,0,0
+Word2Vec + Centroid Vector,0,0,0,0
+Word2Vec + Logistic Regression,0,0,0,0
+Word2Vec + Random Forest,0,0,0,0
+Word2Vec Word2Vec+ SVC,0,0,0,0
