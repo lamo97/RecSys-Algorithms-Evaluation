@@ -24,6 +24,15 @@ if (run["dataset"] == '100k'):
 else:
     dataset_path = 'C:/Users/glamo/Desktop/Repository/RecSys-Algorithms-Evaluation/Dataset/Movielens 1M/'
 
+#apretura file dei ratings
+ratings = ca.Ratings(ca.CSVFile(dataset_path + 'ratings.csv'))
+
+# split del dataset
+train_list, test_list =  rs.HoldOutPartitioning(train_set_size=0.8).split_all(ratings)
+
+# salvataggio su file
+# train_set.to_csv()
+
 # scelta delle rappresentazioni
 if (sys.argv[2] == 'all'):
     representations_list =  [
@@ -42,22 +51,22 @@ if(run["fields_num"] == 1):
         # Centroid Vector
         centroid_vector = rs.CentroidVector({fields[0]:[rep]}, similarity = rs.CosineSimilarity())
         run['algorithm'] = "Centroid Vector"
-        rsutils.predict(centroid_vector, run)
+        rsutils.predict(centroid_vector, run, train_list, test_list, ratings)
 
         # Logistic Regression
         logistic_regression = rs.ClassifierRecommender({fields[0]:[rep]}, rs.SkLogisticRegression())
         run['algorithm'] = "Logistic Regression"
-        rsutils.predict(logistic_regression, run)
+        rsutils.predict(logistic_regression, run, train_list, test_list, ratings)
 
         # Random Forests
         random_forests = rs.ClassifierRecommender({fields[0]:[rep]}, rs.SkRandomForest(n_estimators = 145))
         run['algorithm'] = "Random Forest"
-        rsutils.predict(random_forests, run)
+        rsutils.predict(random_forests, run, train_list, test_list, ratings)
 
         # SVC
         svc = rs.ClassifierRecommender({fields[0]:[rep]}, rs.SkSVC())
         run['algorithm'] = "SVC"
-        rsutils.predict(svc, run)
+        rsutils.predict(svc, run, train_list, test_list, ratings)
 
 if(run["fields_num"] == 3):
     for rep in representations_list:
