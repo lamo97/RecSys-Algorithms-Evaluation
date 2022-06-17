@@ -46,7 +46,8 @@ for field_name in fields:
     ca_config.add_single_config(
         field_name,
         ca.FieldConfig(
-            ca.WordEmbeddingTechnique(ca.GensimWord2Vec()),
+            #ca.WordEmbeddingTechnique(ca.GensimWord2Vec('word2vec-google-news-300.kv')),
+            ca.WordEmbeddingTechnique(ca.Gensim('word2vec-google-news-300')),
             ca.NLTK(stopwords_removal=True, lemmatization=True),
             id='Word2Vec'
         )
@@ -57,7 +58,7 @@ for field_name in fields:
     ca_config.add_single_config(
         field_name,
         ca.FieldConfig(
-            ca.DocumentEmbeddingTechnique(ca.GensimDoc2Vec()),
+            ca.WordEmbeddingTechnique(ca.GensimDoc2Vec()),
             ca.NLTK(stopwords_removal=True, lemmatization=True),
             id='Doc2Vec'
         )

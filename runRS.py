@@ -13,7 +13,6 @@ run = {
     "fields_num" : len(fields),
     "fields" : sys.argv[1],
     "dataset" : sys.argv[3],
-    "split" : sys.argv[4],
     "representation" : "",
     "algorithm" : "",
     "methodology" : ""

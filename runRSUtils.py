@@ -5,64 +5,46 @@ import sys
 import runEV
 
 def predict(algorithm, run):
+    # sceglie il dataset in base al parametro passato
     if (run["dataset"] == '100k'):
         dataset_path = 'C:/Users/glamo/Desktop/Repository/RecSys-Algorithms-Evaluation/Dataset/Movielens 100k/'
+        rank_path = 'C:/Users/glamo/Desktop/Repository/RecSys-Algorithms-Evaluation/Ranks-100k/'
     else:
         dataset_path = 'C:/Users/glamo/Desktop/Repository/RecSys-Algorithms-Evaluation/Dataset/Movielens 1M/'
+        rank_path = 'C:/Users/glamo/Desktop/Repository/RecSys-Algorithms-Evaluation/Ranks-1M/'
 
+    #apretura file dei ratings
     ratings = ca.Ratings(ca.CSVFile(dataset_path + 'ratings.csv'))
     
-    if(run["split"] == 'ho'):
-        train_list, test_list =  rs.HoldOutPartitioning(train_set_size=0.8).split_all(ratings)                         
-        train_set = train_list[0]
+    train_list, test_list =  rs.HoldOutPartitioning(train_set_size=0.8).split_all(ratings)                         
+    train_set = train_list[0]
 
-        cbrs = rs.ContentBasedRS(algorithm, train_set, (dataset_path + '/movies_codified'))
-        cbrs.fit()
+    cbrs = rs.ContentBasedRS(algorithm, train_set, (dataset_path + '/movies_codified'))
+    cbrs.fit()
 
-        test_set = test_list[0]
-        rank = cbrs.rank(test_set, user_id_list = ['8', '2', '1'], n_recs = 3)
+    test_set = test_list[0]
+    rank = cbrs.rank(test_set, user_id_list = ['8', '2', '1'], n_recs = 3)
 
-        # Risultati con TestItems
-        run['methodology'] = "Test Items"
-        result_list = []
-        result_rank = cbrs.rank(test_set,methodology=rs.TestItemsMethodology())
-        result_list.append(result_rank)
+    # Risultati con TestItems
+    run['methodology'] = "Test Items"
+    result_list = []
+    result_rank = cbrs.rank(test_set,methodology=rs.TestItemsMethodology())
+    result_list.append(result_rank)
 
-        runEV.evaluate(result_list, test_list, run)
+    # salva il rank per gli utenti in un CSV
+    filename = (run['fields'] + ' - '+ run['representation'] + ' - ' +  run['algorithm'] + ' - ' +  run['methodology'])
+    result_rank.to_csv((rank_path + run['representation'] + '/'), filename)
 
-        # Risultati con AllItems
-        run['methodology'] = "All Items"
-        result_list = []
-        result_rank = cbrs.rank(test_set,methodology=rs.AllItemsMethodology(set(ratings.item_id_column)))
-        result_list.append(result_rank)
+    runEV.evaluate(result_list, test_list, run)
 
-        runEV.evaluate(result_list, test_list, run)
-
-    elif(run["split"] == 'kf'):
-        kf = rs.KFoldPartitioning(n_splits=2)
-        train_list, test_list = kf.split_all(ratings)
-
-        # Risultati con TestItems
-        run['methodology'] = "Test Items"
-        result_list = []
-
-        for train_set, test_set in zip(train_list, test_list):
-            cbrs = rs.ContentBasedRS(algorithm, train_set, (dataset_path + '/movies_codified'))
-            rank_to_append = cbrs.fit_rank(test_set, methodology=rs.TestItemsMethodology())
-            result_list.append(rank_to_append)
-            #####################
-            rank_to_append.to_csv('C:/Users/glamo/Desktop/Repository/RecSys-Algorithms-Evaluation/RanksCSVs/', ('score - '+ run['representation'] + ' - ' +  run['algorithm']))
-
-        runEV.evaluate(result_list, test_list, run)
-
-        # Risultati con AllItems
-        run['methodology'] = "All Items"
-        result_list = []
-
-        for train_set, test_set in zip(train_list, test_list):
-            rank_to_append = cbrs.fit_rank(test_set, methodology=rs.TestItemsMethodology())
-            result_list.append(rank_to_append)
-            
-        runEV.evaluate(result_list, test_list, run)
-
+    # Risultati con AllItems
+    run['methodology'] = "All Items"
+    result_list = []
+    result_rank = cbrs.rank(test_set,methodology=rs.AllItemsMethodology(set(ratings.item_id_column)))
+    result_list.append(result_rank)
     
+    # salva il rank per gli utenti in un CSV
+    filename = (run['fields'] + ' - '+ run['representation'] + ' - ' +  run['algorithm'] + ' - ' +  run['methodology'])
+    result_rank.to_csv((rank_path + run['representation'] + '/'), filename)
+
+    runEV.evaluate(result_list, test_list, run)
