@@ -1,0 +1,2 @@
+ID,Recall@5 | Test Ratings,Recall@10 | Test Ratings,Recall@10 | All Items,Recall@20 | All Items
+Centroid Vector + Word2Vec,0.45711,0.67402,0.00133,0.00166

@@ -1,0 +1,5 @@
+ID,Gini - Top 5 | Test Ratings,Gini - Top 10 | Test Ratings,Gini - Top 10 | All Items,Gini - Top 20 | All Items
+Centroid Vector + GensimRandomIndexing,0.57293,0.58137,0.72972,0.71504
+Logistic Regression + GensimRandomIndexing,0.55228,0.57428,0.5342,0.51193
+Random Forest + GensimRandomIndexing,0.55564,0.57844,0.65522,0.62304
+SVC + GensimRandomIndexing,0.54352,0.57265,0.38752,0.34809

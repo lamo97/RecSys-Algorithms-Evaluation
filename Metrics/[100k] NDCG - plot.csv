@@ -1,0 +1,2 @@
+ID,NDCG@5 | Test Ratings,NDCG@10 | Test Ratings,NDCG@10 | All Items,NDCG@20 | All Items
+Centroid Vector + Word2Vec,0.84094,0.92389,0.00541,0.00897
