@@ -5,36 +5,36 @@ import sys
 import runEV
 
 def predict(algorithm, run, train_list, test_list, ratings):
+    path = 'D:/Repository/RecSys-Algorithms-Evaluation/'
+
     # sceglie il dataset in base al parametro passato
     if (run["dataset"] == '100k'):
-        dataset_path = 'C:/Users/glamo/Desktop/Repository/RecSys-Algorithms-Evaluation/Dataset/Movielens 100k/'
-        rank_path = 'C:/Users/glamo/Desktop/Repository/RecSys-Algorithms-Evaluation/Ranks-100k/'
+        dataset_path = path + 'Dataset/Movielens 100k/'
     else:
-        dataset_path = 'C:/Users/glamo/Desktop/Repository/RecSys-Algorithms-Evaluation/Dataset/Movielens 1M/'
-        rank_path = 'C:/Users/glamo/Desktop/Repository/RecSys-Algorithms-Evaluation/Ranks-1M/'
+        dataset_path = path + 'Dataset/Movielens 1M/'
 
-    train_set = train_list[0]
+    rs_path = path + f'RS Results {run["dataset"]}/'
+
+    # l'Hold Out restituisce un singolo training set e test set
+    training_set = train_list[0]
     test_set = test_list[0]
 
-    cbrs = rs.ContentBasedRS(algorithm, train_set, (dataset_path + '/movies_codified'))
+    cbrs = rs.ContentBasedRS(algorithm, training_set, (dataset_path + '/movies_codified'))
     cbrs.fit()
 
-    test_set = test_list[0]
-    # rank = cbrs.rank(test_set, user_id_list = ['8', '2', '1'], n_recs = 3)
 
     # Risultati con Test Ratings
     print("Running: Test Ratings")
-    run['methodology'] = "Test Items"
+    run['methodology'] = "Test Ratings"
     result_list = []
-    #salvare e riusare
+
     result_rank = cbrs.rank(test_set, methodology=rs.TestRatingsMethodology(), n_recs=10)
     result_list.append(result_rank)
-
+    
     # salva il rank per gli utenti in un CSV
     filename = (run['fields'] + ' - '+ run['representation'] + ' - ' +  run['algorithm'] + ' - ' +  run['methodology'])
-    result_rank.to_csv((rank_path + run['representation'] + '/'), filename)
+    result_rank.to_csv((rs_path + run['representation'] + '/'), filename, overwrite=True)
 
-    # spostare
     runEV.evaluate(result_list, test_list, run)
 
     # Risultati con AllItems
@@ -46,7 +46,6 @@ def predict(algorithm, run, train_list, test_list, ratings):
     
     # salva il rank per gli utenti in un CSV
     filename = (run['fields'] + ' - '+ run['representation'] + ' - ' +  run['algorithm'] + ' - ' +  run['methodology'])
-    
-    result_rank.to_csv((rank_path + run['representation'] + '/'), filename)
+    result_rank.to_csv((rs_path + run['representation'] + '/'), filename)
 
-    # runEV.evaluate(result_list, test_list, run)
+    runEV.evaluate(result_list, test_list, run)

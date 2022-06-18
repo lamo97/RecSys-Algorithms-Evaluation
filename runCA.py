@@ -3,7 +3,7 @@ from clayrs import content_analyzer as ca
 from clayrs import recsys as rs
 import sys
 
-path = 'C:/Users/glamo/Desktop/Repository/RecSys-Algorithms-Evaluation/'
+path = 'D:/Repository/RecSys-Algorithms-Evaluation/'
 
 # fields = []                           # nel caso si volesse lanciare lo script da codice
 fields = sys.argv[1].split(",")         # lancio con args
@@ -11,9 +11,9 @@ fields = sys.argv[1].split(",")         # lancio con args
 # In[]: Scelta del dataset
 
 if(sys.argv[2] == '100k'):
-    print('Dataset: Movielens 100k')
+    print('\nDataset: Movielens 100k')
     # configurazione del content analyzer
-    dataset_path = 'C:/Users/glamo/Desktop/Repository/RecSys-Algorithms-Evaluation/Dataset/Movielens 100k/'
+    dataset_path = path + 'Dataset/Movielens 100k/'
 
     ca_config = ca.ItemAnalyzerConfig(
         source = ca.JSONFile(dataset_path + 'items_info.json'),
@@ -21,8 +21,8 @@ if(sys.argv[2] == '100k'):
         output_directory = dataset_path + 'movies_codified/'
     )
 else:
-    print('Dataset: Movielens 1M')
-    dataset_path = 'C:/Users/glamo/Desktop/Repository/RecSys-Algorithms-Evaluation/Dataset/Movielens 1M/'
+    print('\nDataset: Movielens 1M')
+    dataset_path =  path + 'Dataset/Movielens 1M/'
     
     ca_config = ca.ItemAnalyzerConfig(
         source = ca.CSVFile(dataset_path + 'movies-ml1m.csv'),

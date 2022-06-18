@@ -24,6 +24,3 @@ runRS.py:
 	[3]: dataset
 		- 100k
 		- 1M
-	[4]: tecnica di split 
-		- ho (Hold Out)
-		- kf (K-Folds)
