@@ -59,8 +59,8 @@ https://colab.research.google.com/drive/1pOXvRY8lW9PQ2VmhQUmtZX4Y-MJfs1Yi?usp=sh
     genres
     tags
     reviews
-    description, genres, tags
-    description, genres, reviews
-    description, tags, reviews
-    genres, tags, reviews
-    description, genres, tags, reviews
+    description,genres,tags
+    description,genres,reviews
+    description,tags,reviews
+    genres,tags,reviews
+    description,genres,tags,reviews
