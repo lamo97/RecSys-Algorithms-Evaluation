@@ -20,3 +20,36 @@ https://colab.research.google.com/drive/1ym8pspwGS-8vxAUu9xsdpTcV7LjHtzEe?usp=sh
 
 5o esempio
 https://colab.research.google.com/drive/1pOXvRY8lW9PQ2VmhQUmtZX4Y-MJfs1Yi?usp=sharing
+
+## Args
+**runCA.py:** <br />
+  **[1]:** **fields** <br />
+		- plot genres (dataset 100k) <br />
+		- description tags genres reviews (dataset 1M) <br /><br />
+	**[2]:** **dataset** <br />
+		- 100k <br />
+		- 1M <br /> <br />
+ <br />
+**runRS.py:** <br />
+	**[1]:** **fields** <br />
+		- plot genres (dataset 100k) <br />
+		- description tags genres reviews (dataset 1M) <br /><br />
+	**[2]:** **representations** <br />
+		- all <br />
+		- SK-TFIDF <br />
+    - Word2Vec <br />
+		- Doc2Vec <br />
+    - GensimLDA <br />
+		- GensimRandomIndexing <br />
+		- GensimFastText <br />
+		- GensimLatentSemanticAnalysis <br />
+    - Word2Doc-GloVe <br />
+		- Sentence2Doc-Sbert <br /><br />
+	**[3]:** **dataset** <br />
+		- 100k <br />
+		- 1M <br />
+
+<br />
+es. <br />
+python runCA.py plot,genres 1M <br />
+python runRS.py plot,genres all 1M
