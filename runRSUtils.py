@@ -46,6 +46,6 @@ def predict(algorithm, run, train_list, test_list, ratings):
     
     # salva il rank per gli utenti in un CSV
     filename = (run['fields'] + ' - '+ run['representation'] + ' - ' +  run['algorithm'] + ' - ' +  run['methodology'])
-    result_rank.to_csv((rs_path + run['representation'] + '/'), filename)
+    result_rank.to_csv((rs_path + run['representation'] + '/'), filename, overwrite=True)
 
     runEV.evaluate(result_list, test_list, run)
