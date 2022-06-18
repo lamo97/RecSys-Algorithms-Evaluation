@@ -45,7 +45,7 @@ https://colab.research.google.com/drive/1pOXvRY8lW9PQ2VmhQUmtZX4Y-MJfs1Yi?usp=sh
 		- GensimLatentSemanticAnalysis
     	- Word2Doc-GloVe
 		- Sentence2Doc-Sbert
-	[3]:dataset
+	[3]: dataset
 		- 100k
 		- 1M
 
