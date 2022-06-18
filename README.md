@@ -53,3 +53,14 @@ https://colab.research.google.com/drive/1pOXvRY8lW9PQ2VmhQUmtZX4Y-MJfs1Yi?usp=sh
 	python runCA.py plot,genres 100k
 	python runRS.py plot,genres all 100k
 	python runRS.py description Word2Vec 1M
+
+### Combinazioni
+	description
+    genres
+    tags
+    reviews
+    description, genres, tags
+    description, genres, reviews
+    description, tags, reviews
+    genres, tags, reviews
+    description, genres, tags, reviews

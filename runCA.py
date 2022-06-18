@@ -12,9 +12,9 @@ fields = sys.argv[1].split(",")         # lancio con args
 
 if(sys.argv[2] == '100k'):
     print('\nDataset: Movielens 100k')
-    # configurazione del content analyzer
     dataset_path = path + 'Dataset/Movielens 100k/'
-
+    
+    # configurazione del content analyzer
     ca_config = ca.ItemAnalyzerConfig(
         source = ca.JSONFile(dataset_path + 'items_info.json'),
         id = 'movielens_id',
@@ -24,6 +24,7 @@ else:
     print('\nDataset: Movielens 1M')
     dataset_path =  path + 'Dataset/Movielens 1M/'
     
+    # configurazione del content analyzer
     ca_config = ca.ItemAnalyzerConfig(
         source = ca.CSVFile(dataset_path + 'movies-ml1m.csv'),
         id = 'item',
