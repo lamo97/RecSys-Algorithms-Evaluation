@@ -26,7 +26,7 @@ https://colab.research.google.com/drive/1pOXvRY8lW9PQ2VmhQUmtZX4Y-MJfs1Yi?usp=sh
 	[1]: fields
 		- plot | genres		 		-> (dataset 100k)
 		- description | tags | genres | reviews -> (dataset 1M)
-	[2]:	dataset
+	[2]: dataset
 		- 100k
 		- 1M
 		
