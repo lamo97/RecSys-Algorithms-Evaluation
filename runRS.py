@@ -107,7 +107,6 @@ if(run["fields_num"] == 3):
             }, 
             rs.SkRandomForest(n_estimators = 145)
         )
-        random_forests = rs.ClassifierRecommender({fields[0]:[rep]}, rs.SkRandomForest(n_estimators = 145))
         run['algorithm'] = "Random Forest"
         rsutils.predict(random_forests, run, train_list, test_list, ratings)
 
@@ -120,7 +119,6 @@ if(run["fields_num"] == 3):
             }, 
             rs.SkSVC()
         )
-        svc = rs.ClassifierRecommender({fields[0]:[rep]}, rs.SkSVC())
         run['algorithm'] = "SVC"
         rsutils.predict(svc, run, train_list, test_list, ratings)
 
@@ -164,7 +162,6 @@ if(run["fields_num"] == 4):
             }, 
             rs.SkRandomForest(n_estimators = 145)
         )
-        random_forests = rs.ClassifierRecommender({fields[0]:[rep]}, rs.SkRandomForest(n_estimators = 145))
         run['algorithm'] = "Random Forest"
         rsutils.predict(random_forests, run, train_list, test_list, ratings)
 
@@ -178,7 +175,6 @@ if(run["fields_num"] == 4):
             }, 
             rs.SkSVC()
         )
-        svc = rs.ClassifierRecommender({fields[0]:[rep]}, rs.SkSVC())
         run['algorithm'] = "SVC"
         rsutils.predict(svc, run, train_list, test_list, ratings)
         

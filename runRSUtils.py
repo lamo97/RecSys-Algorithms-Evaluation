@@ -41,6 +41,7 @@ def predict(algorithm, run, train_list, test_list, ratings):
     print("Running: All Items")
     run['methodology'] = "All Items"
     result_list = []
+    
     result_rank = cbrs.rank(test_set,methodology=rs.AllItemsMethodology(set(ratings.item_id_column)), n_recs=20)
     result_list.append(result_rank)
     
