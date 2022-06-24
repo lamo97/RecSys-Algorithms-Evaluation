@@ -1,2 +1,0 @@
-ID,Precision@5 | Test Ratings,Precision@10 | Test Ratings,Precision@10 | All Items,Precision@20 | All Items
-Centroid Vector + Word2Vec,0.5676,0.56827,0.00074,0.00064

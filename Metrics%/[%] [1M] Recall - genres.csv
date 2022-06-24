@@ -1,0 +1,12 @@
+ID,Recall@5 | Test Ratings,Recall@10 | Test Ratings,Recall@10 | All Items,Recall@20 | All Items
+Centroid Vector + Doc2Vec,,,74.0,75.0
+Centroid Vector + SK-TFIDF,,,110.0,111.0
+Centroid Vector + Word2Vec,,,71.0,64.0
+Logistic Regression + Doc2Vec,,,-87.0,-68.0
+Logistic Regression + SK-TFIDF,,,-8.0,-15.0
+Logistic Regression + Word2Vec,,,-85.0,-78.0
+Random Forest + Doc2Vec,,,,
+Random Forest + SK-TFIDF,,,44.0,37.0
+Random Forest + Word2Vec,,,52.0,44.0
+SVC + SK-TFIDF,,,,-8.0
+SVC + Word2Vec,,,-67.0,-63.0

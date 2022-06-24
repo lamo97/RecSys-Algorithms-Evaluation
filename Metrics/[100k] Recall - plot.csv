@@ -1,2 +1,10 @@
 ID,Recall@5 | Test Ratings,Recall@10 | Test Ratings,Recall@10 | All Items,Recall@20 | All Items
+Centroid Vector + Doc2Vec,0.45904,0.67233,0.00153,0.00908
+Centroid Vector + GensimRandomIndexing,0.46043,0.67539,0.01206,0.02272
 Centroid Vector + Word2Vec,0.45711,0.67402,0.00133,0.00166
+Logistic Regression + Doc2Vec,0.46157,0.67278,0.00251,0.00995
+Logistic Regression + GensimRandomIndexing,0.4557,0.67377,0.00315,0.00806
+Random Forest + Doc2Vec,0.45892,0.67212,0.00709,0.01372
+Random Forest + GensimRandomIndexing,0.45567,0.67418,0.0096,0.01512
+SVC + Doc2Vec,0.44736,0.66662,0.00335,0.00977
+SVC + GensimRandomIndexing,0.44759,0.67045,0.00669,0.01422

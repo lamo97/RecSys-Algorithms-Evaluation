@@ -1,2 +1,10 @@
 ID,F1@5 | Test Ratings,F1@10 | Test Ratings,F1@10 | All Items,F1@20 | All Items
+Centroid Vector + Doc2Vec,0.44435,0.56493,0.0016,0.0054
+Centroid Vector + GensimRandomIndexing,0.44909,0.56914,0.00972,0.01313
 Centroid Vector + Word2Vec,0.43871,0.56255,0.00068,0.00068
+Logistic Regression + Doc2Vec,0.44835,0.56524,0.00284,0.00647
+Logistic Regression + GensimRandomIndexing,0.44348,0.56689,0.00249,0.00458
+Random Forest + Doc2Vec,0.44583,0.56395,0.0065,0.00921
+Random Forest + GensimRandomIndexing,0.44281,0.56562,0.00759,0.00871
+SVC + Doc2Vec,0.43136,0.5572,0.00316,0.00631
+SVC + GensimRandomIndexing,0.43281,0.56254,0.00689,0.00961

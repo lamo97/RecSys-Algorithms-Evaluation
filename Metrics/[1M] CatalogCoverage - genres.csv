@@ -1,0 +1,12 @@
+ID,CatalogCoverage - Top 5 | Test Ratings,CatalogCoverage - Top 10 | Test Ratings,CatalogCoverage - Top 10 | All Items,CatalogCoverage - Top 20 | All Items
+Centroid Vector + Doc2Vec,58.09,72.64,22.48,32.84
+Centroid Vector + SK-TFIDF,69.19,79.03,35.54,48.0
+Centroid Vector + Word2Vec,59.42,73.26,22.34,31.98
+Logistic Regression + Doc2Vec,72.13,81.25,7.88,16.14
+Logistic Regression + SK-TFIDF,70.89,79.87,42.9,52.62
+Logistic Regression + Word2Vec,73.58,81.6,9.26,19.48
+Random Forest + Doc2Vec,69.72,78.79,0.0,0.0
+Random Forest + SK-TFIDF,69.83,78.79,43.85,52.62
+Random Forest + Word2Vec,69.75,79.01,42.17,52.19
+SVC + SK-TFIDF,72.1,80.57,43.42,52.73
+SVC + Word2Vec,72.96,81.11,40.53,52.1

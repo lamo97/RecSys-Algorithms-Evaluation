@@ -1,0 +1,10 @@
+ID,DeltaGap - Top 5 | Blockbuster | Test Ratings,DeltaGap - Top 5 | Niche | Test Ratings,DeltaGap - Top 5 | Diverse | Test Ratings,DeltaGap - Top 10 | Blockbuster | Test Ratings,DeltaGap - Top 10 | Niche | Test Ratings,DeltaGap - Top 10 | Diverse | Test Ratings,DeltaGap - Top 10 | Blockbuster | All Items,DeltaGap - Top 10 | Niche | All Items,DeltaGap - Top 10 | Diverse | All Items,DeltaGap - Top 20 | Blockbuster | All Items,DeltaGap - Top 20 | Niche | All Items,DeltaGap - Top 20 | Diverse | All Items
+Centroid Vector + Doc2Vec,55.0,129.0,-127,111,75,-521,23,17,7.0,16,12.0,6.0
+Centroid Vector + GensimRandomIndexing,-31.0,-35.0,56,-43,-34,243,-16,-16,-12.0,-10,-9.0,-12.0
+Centroid Vector + Word2Vec,73.0,81.0,-116,40,125,-430,38,21,11.0,35,27.0,14.0
+Logistic Regression + Doc2Vec,,-40.0,61,-5,-12,149,10,11,,-6,-9.0,
+Logistic Regression + GensimRandomIndexing,-21.0,,-9,-6,-30,8,13,11,8.0,8,10.0,7.0
+Random Forest + Doc2Vec,8.0,,-18,-12,-22,-32,-23,-16,-10.0,-14,-11.0,-9.0
+Random Forest + GensimRandomIndexing,-25.0,-39.0,43,-16,-31,153,-11,-8,,-6,,
+SVC + Doc2Vec,-36.0,-72.0,67,-52,-52,278,-15,-6,,-11,-8.0,-5.0
+SVC + GensimRandomIndexing,-19.0,-22.0,42,-15,-16,150,-18,-14,-5.0,-10,-7.0,

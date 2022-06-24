@@ -1,0 +1,13 @@
+ID,Gini - Top 5 | Test Ratings,Gini - Top 10 | Test Ratings,Gini - Top 10 | All Items,Gini - Top 20 | All Items
+Centroid Vector + GensimRandomIndexing,,,27,30
+Centroid Vector + SK-TFIDF,,,26,31
+Centroid Vector + Sentence2Doc-Sbert,,,32,39
+Logistic Regression + GensimRandomIndexing,,,-7,-6
+Logistic Regression + SK-TFIDF,,,-20,-22
+Logistic Regression + Sentence2Doc-Sbert,,,-5,-5
+Random Forest + GensimRandomIndexing,,,14,13
+Random Forest + SK-TFIDF,,,6,5
+Random Forest + Sentence2Doc-Sbert,,,14,14
+SVC + GensimRandomIndexing,,,-32,-36
+SVC + SK-TFIDF,,,-26,-30
+SVC + Sentence2Doc-Sbert,,,-28,-32

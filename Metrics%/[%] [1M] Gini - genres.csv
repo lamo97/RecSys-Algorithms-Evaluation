@@ -1,0 +1,12 @@
+ID,Gini - Top 5 | Test Ratings,Gini - Top 10 | Test Ratings,Gini - Top 10 | All Items,Gini - Top 20 | All Items
+Centroid Vector + Doc2Vec,9.0,6.0,30.0,35.0
+Centroid Vector + SK-TFIDF,,,25.0,27.0
+Centroid Vector + Word2Vec,7.0,5.0,29.0,33.0
+Logistic Regression + Doc2Vec,,,35.0,40.0
+Logistic Regression + SK-TFIDF,,,-31.0,-32.0
+Logistic Regression + Word2Vec,,,31.0,37.0
+Random Forest + Doc2Vec,,,,
+Random Forest + SK-TFIDF,,,,-6.0
+Random Forest + Word2Vec,,,7.0,
+SVC + SK-TFIDF,,,-41.0,-47.0
+SVC + Word2Vec,-5.0,,12.0,7.0

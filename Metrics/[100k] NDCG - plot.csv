@@ -1,2 +1,10 @@
 ID,NDCG@5 | Test Ratings,NDCG@10 | Test Ratings,NDCG@10 | All Items,NDCG@20 | All Items
+Centroid Vector + Doc2Vec,0.84263,0.92499,0.02928,0.04877
+Centroid Vector + GensimRandomIndexing,0.84617,0.92687,0.06418,0.10025
 Centroid Vector + Word2Vec,0.84094,0.92389,0.00541,0.00897
+Logistic Regression + Doc2Vec,0.83781,0.92193,0.04825,0.0719
+Logistic Regression + GensimRandomIndexing,0.84319,0.92516,0.02386,0.03971
+Random Forest + Doc2Vec,0.83631,0.9205,0.06128,0.09242
+Random Forest + GensimRandomIndexing,0.84092,0.92359,0.07077,0.09519
+SVC + Doc2Vec,0.83113,0.91993,0.04484,0.07055
+SVC + GensimRandomIndexing,0.83429,0.9204,0.07546,0.10401
