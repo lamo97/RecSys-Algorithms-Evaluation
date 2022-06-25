@@ -1,0 +1,37 @@
+"ID (Field: description,genres,tags,reviews)",Gini@5 (TR),Gini@10 (TR)
+Centroid Vector + Doc2Vec,0.7617,0.7425
+Centroid Vector + GensimFastText,0.7509,0.7317
+Centroid Vector + GensimLDA,0.7276,0.71
+Centroid Vector + GensimLSA,0.7376,0.7156
+Centroid Vector + GensimRandomIndexing,0.75,0.7247
+Centroid Vector + SK-TFIDF,0.7311,0.716
+Centroid Vector + Sentence2Doc-Sbert,0.7445,0.7321
+Centroid Vector + Word2Doc-GloVe,0.7452,0.7283
+Centroid Vector + Word2Vec,0.7532,0.7352
+Logistic Regression + Doc2Vec,0.6617,0.6781
+Logistic Regression + GensimFastText,0.688,0.6903
+Logistic Regression + GensimLDA,0.6639,0.6714
+Logistic Regression + GensimLSA,0.6815,0.6822
+Logistic Regression + GensimRandomIndexing,0.676,0.6784
+Logistic Regression + SK-TFIDF,0.6996,0.7008
+Logistic Regression + Sentence2Doc-Sbert,0.6829,0.6878
+Logistic Regression + Word2Doc-GloVe,0.6519,0.6649
+Logistic Regression + Word2Vec,0.6809,0.687
+Random Forest + Doc2Vec,0.6886,0.691
+Random Forest + GensimFastText,0.6921,0.6951
+Random Forest + GensimLDA,0.6636,0.6734
+Random Forest + GensimLSA,0.6829,0.6935
+Random Forest + GensimRandomIndexing,0.7023,0.7056
+Random Forest + SK-TFIDF,0.6913,0.6948
+Random Forest + Sentence2Doc-Sbert,0.6922,0.6963
+Random Forest + Word2Doc-GloVe,0.6906,0.6956
+Random Forest + Word2Vec,0.6893,0.6931
+SVC + Doc2Vec,0.6756,0.6908
+SVC + GensimFastText,0.6642,0.6826
+SVC + GensimLDA,0.6368,0.653
+SVC + GensimLSA,0.6387,0.65
+SVC + GensimRandomIndexing,0.6327,0.6468
+SVC + SK-TFIDF,0.6779,0.6914
+SVC + Sentence2Doc-Sbert,0.6856,0.6977
+SVC + Word2Doc-GloVe,0.6338,0.6553
+SVC + Word2Vec,0.6656,0.6842

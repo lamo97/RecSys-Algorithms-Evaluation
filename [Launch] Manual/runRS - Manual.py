@@ -25,9 +25,7 @@ fields_string = 'description,genres,tags' # INSERIRE QUI LA STRINGA FORMATA DAI 
 # 'Word2Doc-GloVe','Sentence2Doc-Sbert'
 
 # inserire le rappresentazioni per le quali effettuare le predizioni
-representations_list = ['SK-TFIDF', 'Word2Vec', 'Doc2Vec',
- 'GensimLDA','GensimRandomIndexing', 'GensimFastText', 'GensimLSA', 
- 'Word2Doc-GloVe','Sentence2Doc-Sbert']
+representations_list = ['Sentence2Doc-Sbert']
 
 # contiene informazioni sull'esecuzione corrente
 run = {
