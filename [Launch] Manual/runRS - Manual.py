@@ -16,8 +16,8 @@ path = 'D:/Repository/RecSys-Algorithms-Evaluation/'
 # genres,tags,reviews
 # description,genres,tags,reviews
 
-fields = ['genres', 'tags', 'reviews']    # INSERIRE QUI I CAMPI PER I QUALI EFFETTUARE LE PREDIZIONI
-fields_string = 'genres,tags,reviews' # INSERIRE QUI LA STRINGA FORMATA DAI CAMPI, SENZA SPAZI
+fields = ['description', 'tags', 'reviews']    # INSERIRE QUI I CAMPI PER I QUALI EFFETTUARE LE PREDIZIONI
+fields_string = 'description,tags,reviews' # INSERIRE QUI LA STRINGA FORMATA DAI CAMPI, SENZA SPAZI
 
 # ------------------------ RAPPRESENTAZIONI -------------------------
 # 'SK-TFIDF', 'Word2Vec', 'Doc2Vec',
