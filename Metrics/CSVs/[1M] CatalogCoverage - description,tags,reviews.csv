@@ -1,0 +1,37 @@
+"ID (Field: description,tags,reviews)",CatalogCoverage@5 (TR),CatalogCoverage@10 (TR)
+Centroid Vector + Doc2Vec,51.24,68.24
+Centroid Vector + GensimFastText,52.48,69.83
+Centroid Vector + GensimLDA,56.07,72.8
+Centroid Vector + GensimLSA,55.5,71.8
+Centroid Vector + GensimRandomIndexing,53.51,71.05
+Centroid Vector + SK-TFIDF,47.84,65.43
+Centroid Vector + Sentence2Doc-Sbert,45.84,64.33
+Centroid Vector + Word2Doc-GloVe,49.35,67.7
+Centroid Vector + Word2Vec,51.57,69.4
+Logistic Regression + Doc2Vec,67.86,77.06
+Logistic Regression + GensimFastText,65.92,76.23
+Logistic Regression + GensimLDA,67.24,78.44
+Logistic Regression + GensimLSA,64.57,76.17
+Logistic Regression + GensimRandomIndexing,65.25,76.47
+Logistic Regression + SK-TFIDF,59.58,72.53
+Logistic Regression + Sentence2Doc-Sbert,65.11,76.28
+Logistic Regression + Word2Doc-GloVe,71.29,79.33
+Logistic Regression + Word2Vec,65.92,76.39
+Random Forest + Doc2Vec,63.79,75.12
+Random Forest + GensimFastText,63.73,74.64
+Random Forest + GensimLDA,70.7,79.71
+Random Forest + GensimLSA,66.27,75.09
+Random Forest + GensimRandomIndexing,62.66,73.88
+Random Forest + SK-TFIDF,65.54,76.25
+Random Forest + Sentence2Doc-Sbert,61.68,73.07
+Random Forest + Word2Doc-GloVe,63.19,74.31
+Random Forest + Word2Vec,63.71,74.12
+SVC + Doc2Vec,66.95,75.85
+SVC + GensimFastText,68.86,77.79
+SVC + GensimLDA,71.4,79.44
+SVC + GensimLSA,70.75,79.17
+SVC + GensimRandomIndexing,71.61,80.03
+SVC + SK-TFIDF,65.3,74.07
+SVC + Sentence2Doc-Sbert,63.55,73.56
+SVC + Word2Doc-GloVe,72.4,78.76
+SVC + Word2Vec,69.59,77.63

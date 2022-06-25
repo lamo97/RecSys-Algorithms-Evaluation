@@ -1,0 +1,37 @@
+ID (Field: description),Precision@5 (TR),Precision@10 (TR)
+Centroid Vector + Doc2Vec,0.5717,0.5659
+Centroid Vector + GensimFastText,0.5741,0.565
+Centroid Vector + GensimLDA,0.5608,0.5582
+Centroid Vector + GensimLSA,0.5744,0.5687
+Centroid Vector + GensimRandomIndexing,0.5705,0.5654
+Centroid Vector + SK-TFIDF,0.5907,0.5784
+Centroid Vector + Sentence2Doc-Sbert,0.5808,0.5691
+Centroid Vector + Word2Doc-GloVe,0.5821,0.57
+Centroid Vector + Word2Vec,0.5769,0.5688
+Logistic Regression + Doc2Vec,0.58,0.5738
+Logistic Regression + GensimFastText,0.5585,0.558
+Logistic Regression + GensimLDA,0.5607,0.5609
+Logistic Regression + GensimLSA,0.5869,0.5784
+Logistic Regression + GensimRandomIndexing,0.578,0.5708
+Logistic Regression + SK-TFIDF,0.6116,0.5924
+Logistic Regression + Sentence2Doc-Sbert,0.5915,0.5802
+Logistic Regression + Word2Doc-GloVe,0.5979,0.5868
+Logistic Regression + Word2Vec,0.5679,0.5643
+Random Forest + Doc2Vec,0.576,0.5707
+Random Forest + GensimFastText,0.5676,0.5651
+Random Forest + GensimLDA,0.5707,0.5629
+Random Forest + GensimLSA,0.5747,0.5694
+Random Forest + GensimRandomIndexing,0.5656,0.5628
+Random Forest + SK-TFIDF,0.5863,0.577
+Random Forest + Sentence2Doc-Sbert,0.5899,0.5794
+Random Forest + Word2Doc-GloVe,0.5948,0.5845
+Random Forest + Word2Vec,0.5688,0.5634
+SVC + Doc2Vec,0.5487,0.5538
+SVC + GensimFastText,0.5549,0.5571
+SVC + GensimLDA,0.5573,0.5583
+SVC + GensimLSA,0.5618,0.5628
+SVC + GensimRandomIndexing,0.5562,0.5582
+SVC + SK-TFIDF,0.5567,0.5609
+SVC + Sentence2Doc-Sbert,0.5674,0.5691
+SVC + Word2Doc-GloVe,0.5624,0.5643
+SVC + Word2Vec,0.5522,0.5545
