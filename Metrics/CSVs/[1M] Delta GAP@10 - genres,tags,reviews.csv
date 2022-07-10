@@ -1,0 +1,37 @@
+"ID (Field: genres,tags,reviews)",DeltaGAP@10 | Blockbuster,DeltaGAP@10 | Niche,DeltaGAP@10 | Diverse
+Centroid Vector + Doc2Vec,0.30933,0.36706,0.13471
+Centroid Vector + GensimFastText,0.20717,0.20414,0.13443
+Centroid Vector + GensimLDA,0.0506,0.0407,-0.04142
+Centroid Vector + GensimLSA,0.07583,0.05936,0.00625
+Centroid Vector + GensimRandomIndexing,0.09186,0.08271,0.03823
+Centroid Vector + SK-TFIDF,0.23104,0.18277,0.07015
+Centroid Vector + Sentence2Doc-Sbert,0.24062,0.26451,0.10891
+Centroid Vector + Word2Doc-GloVe,0.13284,0.11707,0.07925
+Centroid Vector + Word2Vec,0.22988,0.25046,0.13557
+Logistic Regression + Doc2Vec,0.1233,0.09801,-0.00546
+Logistic Regression + GensimFastText,0.14944,0.11703,0.03333
+Logistic Regression + GensimLDA,0.10151,0.07146,0.01294
+Logistic Regression + GensimLSA,0.14744,0.12397,0.06053
+Logistic Regression + GensimRandomIndexing,0.14467,0.11398,0.05717
+Logistic Regression + SK-TFIDF,0.23083,0.18047,0.06431
+Logistic Regression + Sentence2Doc-Sbert,0.17996,0.14022,0.05998
+Logistic Regression + Word2Doc-GloVe,0.11352,0.07904,-0.01495
+Logistic Regression + Word2Vec,0.1398,0.11122,0.01425
+Random Forest + Doc2Vec,0.19825,0.14114,0.06244
+Random Forest + GensimFastText,0.19918,0.16306,0.06815
+Random Forest + GensimLDA,0.12421,0.0889,0.01205
+Random Forest + GensimLSA,0.24059,0.18206,0.04841
+Random Forest + GensimRandomIndexing,0.26923,0.20381,0.06528
+Random Forest + SK-TFIDF,0.22528,0.18016,0.05803
+Random Forest + Sentence2Doc-Sbert,0.20781,0.16222,0.05996
+Random Forest + Word2Doc-GloVe,0.20833,0.16993,0.07406
+Random Forest + Word2Vec,0.20126,0.16143,0.07222
+SVC + Doc2Vec,0.18716,0.15239,0.04048
+SVC + GensimFastText,0.16283,0.12833,0.03313
+SVC + GensimLDA,0.08322,0.05862,0.00219
+SVC + GensimLSA,0.09383,0.05629,-0.01472
+SVC + GensimRandomIndexing,0.08458,0.04964,-0.01961
+SVC + SK-TFIDF,0.19111,0.14253,0.03762
+SVC + Sentence2Doc-Sbert,0.22521,0.1768,0.05574
+SVC + Word2Doc-GloVe,0.09899,0.0636,-0.01437
+SVC + Word2Vec,0.16893,0.13448,0.02896

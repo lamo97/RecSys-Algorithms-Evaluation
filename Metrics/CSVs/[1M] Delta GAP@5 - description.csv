@@ -1,0 +1,37 @@
+ID (Field: description),DeltaGAP@5 | Blockbuster,DeltaGAP@5 | Niche,DeltaGAP@5 | Diverse
+Centroid Vector + Doc2Vec,0.14838,0.07929,-0.02999
+Centroid Vector + GensimFastText,0.16748,0.09812,-0.00787
+Centroid Vector + GensimLDA,0.12641,0.05435,-0.05099
+Centroid Vector + GensimLSA,0.10431,0.04122,-0.07352
+Centroid Vector + GensimRandomIndexing,0.0875,0.01926,-0.08662
+Centroid Vector + SK-TFIDF,0.16529,0.11457,-0.02991
+Centroid Vector + Sentence2Doc-Sbert,0.16463,0.12555,0.01007
+Centroid Vector + Word2Doc-GloVe,0.16294,0.10432,0.00601
+Centroid Vector + Word2Vec,0.15686,0.10004,-0.03086
+Logistic Regression + Doc2Vec,0.11762,0.05433,-0.08088
+Logistic Regression + GensimFastText,0.13244,0.06255,-0.05561
+Logistic Regression + GensimLDA,0.11593,0.06318,-0.0536
+Logistic Regression + GensimLSA,0.12513,0.07687,-0.04465
+Logistic Regression + GensimRandomIndexing,0.1366,0.0679,-0.03846
+Logistic Regression + SK-TFIDF,0.17463,0.09742,-0.04701
+Logistic Regression + Sentence2Doc-Sbert,0.11197,0.04497,-0.09313
+Logistic Regression + Word2Doc-GloVe,0.12715,0.05399,-0.07715
+Logistic Regression + Word2Vec,0.1496,0.07708,-0.04945
+Random Forest + Doc2Vec,0.11721,0.06902,-0.06797
+Random Forest + GensimFastText,0.1163,0.08872,-0.05007
+Random Forest + GensimLDA,0.14089,0.08284,-0.03701
+Random Forest + GensimLSA,0.10387,0.04304,-0.08373
+Random Forest + GensimRandomIndexing,0.10779,0.03602,-0.09819
+Random Forest + SK-TFIDF,0.12581,0.07101,-0.06065
+Random Forest + Sentence2Doc-Sbert,0.14162,0.08626,-0.04436
+Random Forest + Word2Doc-GloVe,0.12646,0.08153,-0.04788
+Random Forest + Word2Vec,0.12898,0.07732,-0.04844
+SVC + Doc2Vec,0.10373,0.03492,-0.09576
+SVC + GensimFastText,0.13089,0.06517,-0.06458
+SVC + GensimLDA,0.11385,0.07911,-0.06772
+SVC + GensimLSA,0.11496,0.06232,-0.06435
+SVC + GensimRandomIndexing,0.10588,0.05492,-0.06887
+SVC + SK-TFIDF,0.14228,0.08414,-0.03889
+SVC + Sentence2Doc-Sbert,0.11614,0.05867,-0.06711
+SVC + Word2Doc-GloVe,0.11232,0.05502,-0.07862
+SVC + Word2Vec,0.12489,0.05695,-0.0711

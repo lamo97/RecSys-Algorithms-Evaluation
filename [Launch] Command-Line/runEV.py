@@ -1,4 +1,3 @@
-from clayrs import content_analyzer as ca
 from clayrs import evaluation as eva
 
 path = 'D:/Repository/RecSys-Algorithms-Evaluation/'
@@ -7,15 +6,13 @@ def filename(fields, representation, algorithm, methodology, cutoff):
     return (representation + '/' + fields + ' - ' + representation + ' - '
     + algorithm + ' (' + methodology + '@' + str(cutoff) + ').csv')
 
-def evaluate(result_list, test_list, run):
+def evaluate(result_list, test_list, run, ratings):
     if (run["dataset"] == '100k'):
         dataset_path = path + 'Dataset/Movielens 100k/'
         results_path = path + 'Eval Results - 100k/'
     else:
         dataset_path = path + 'Dataset/Movielens 1M/'
         results_path = path + 'Eval Results - 1M/'
-
-    ratings = ca.Ratings(ca.CSVFile(dataset_path + 'ratings.csv'))
 
     TestRatings_cutoffs = [5,10]
     AllItems_cutoffs = [10,20]
@@ -52,7 +49,6 @@ def evaluate(result_list, test_list, run):
                 results_path + 'USER/' +
                 filename(run['fields'], run['representation'], run['algorithm'], run['methodology'], cutoff))
             
-
     elif(run["methodology"] == 'All Items'):
         for cutoff in AllItems_cutoffs:
             em = eva.EvalModel(

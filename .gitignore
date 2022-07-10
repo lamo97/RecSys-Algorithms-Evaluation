@@ -1,1 +1,5 @@
 Dataset/Movielens 1M/movies_codified
+__pycache__/
+Test/
+[Utilities]/__pycache__/
+[Utilities]/.ipynb_checkpoints/

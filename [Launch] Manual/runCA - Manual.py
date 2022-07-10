@@ -4,7 +4,18 @@ from clayrs import recsys as rs
 import sys
 
 path = 'D:/Repository/RecSys-Algorithms-Evaluation/'
-#'description','genres','tags','reviews'
+
+# ------------- CAMPI ------------- 
+# description
+# genres
+# tags
+# reviews
+# description,genres,tags
+# description,genres,reviews
+# description,tags,reviews
+# genres,tags,reviews
+# description,genres,tags,reviews
+
 # CONFIGURAZIONE CAMPI
 fields = ['reviews']
 fields_string = "reviews"

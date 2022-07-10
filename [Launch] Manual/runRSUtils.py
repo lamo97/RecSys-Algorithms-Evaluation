@@ -1,6 +1,4 @@
-from clayrs import content_analyzer as ca
 from clayrs import recsys as rs
-from clayrs import evaluation as eva
 import runEV
 
 def predict(algorithm, run, train_list, test_list, ratings):
@@ -20,31 +18,18 @@ def predict(algorithm, run, train_list, test_list, ratings):
 
     items_path = f'{dataset_path}movies_codified/{run["fields"]}/{run["representation"]}/'
 
+    # settaggio del RS
+    print(f'### Loading items from {items_path}')
+
     cbrs = rs.ContentBasedRS(algorithm, training_set, items_path)
-    
-    print(f'### Loading items from {dataset_path}movies_codified/{run["representation"]}/')
     cbrs.fit()
 
     # Risultati con Test Ratings
-    print(f'Running: {run["algorithm"]} w/Test Ratings')
-    run['methodology'] = "Test Ratings"
-    result_list = []
-
-    result_rank = cbrs.rank(test_set, methodology=rs.TestRatingsMethodology(), n_recs=10)
-    result_list.append(result_rank)
-    
-    # salva il rank per gli utenti in un CSV
-    filename = (run['fields'] + ' - '+ run['representation'] + ' - ' +  run['algorithm'] + ' - ' +  run['methodology'])
-    result_rank.to_csv((rs_path + run['representation'] + '/'), filename, overwrite=True)
-
-    runEV.evaluate(result_list, test_list, run)
-
-    # Risultati con AllItems
-    #print("Running: All Items")
-    #run['methodology'] = "All Items"
+    #print(f'Running: {run["algorithm"]} w/Test Ratings')
+    #run['methodology'] = "Test Ratings"
     #result_list = []
 #
-    #result_rank = cbrs.rank(test_set,methodology=rs.AllItemsMethodology(set(ratings.item_id_column)), n_recs=20)
+    #result_rank = cbrs.rank(test_set, methodology=rs.TestRatingsMethodology(), n_recs=10)
     #result_list.append(result_rank)
     #
     ## salva il rank per gli utenti in un CSV
@@ -52,3 +37,17 @@ def predict(algorithm, run, train_list, test_list, ratings):
     #result_rank.to_csv((rs_path + run['representation'] + '/'), filename, overwrite=True)
 #
     #runEV.evaluate(result_list, test_list, run)
+
+    # Risultati con AllItems
+    print("Running: All Items")
+    run['methodology'] = "All Items"
+    result_list = []
+
+    result_rank = cbrs.rank(test_set,methodology=rs.AllItemsMethodology(set(ratings.item_id_column)), n_recs=20)
+    result_list.append(result_rank)
+    
+    # salva il rank per gli utenti in un CSV
+    filename = (run['fields'] + ' - '+ run['representation'] + ' - ' +  run['algorithm'] + ' - ' +  run['methodology'])
+    result_rank.to_csv((rs_path + run['representation'] + '/'), filename, overwrite=True)
+
+    runEV.evaluate(result_list, test_list, run)

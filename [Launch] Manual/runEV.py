@@ -10,10 +10,10 @@ def filename(fields, representation, algorithm, methodology, cutoff):
 def evaluate(result_list, test_list, run):
     if (run["dataset"] == '100k'):
         dataset_path = path + 'Dataset/Movielens 100k/'
-        results_path = path + 'Eval Results - 100k/'
+        results_path = path + '[100k] Evaluation Results/'
     else:
         dataset_path = path + 'Dataset/Movielens 1M/'
-        results_path = path + 'Eval Results - 1M/'
+        results_path = path + '[1M] Evaluation Results/'
 
     ratings = ca.Ratings(ca.CSVFile(dataset_path + 'ratings.csv'))
 
@@ -45,11 +45,11 @@ def evaluate(result_list, test_list, run):
             sys_result, users_result = em.fit()
            
             sys_result.to_csv(
-                results_path + 'SYS/' +
+                results_path + 'SYS/TestRatings/' +
                 filename(run['fields'], run['representation'], run['algorithm'], run['methodology'], cutoff))
 
             users_result.to_csv(
-                results_path + 'USER/' +
+                results_path + 'USER/TestRatings/' +
                 filename(run['fields'], run['representation'], run['algorithm'], run['methodology'], cutoff))
             
 
@@ -66,15 +66,20 @@ def evaluate(result_list, test_list, run):
                     eva.MRRAtK(k=cutoff),
                     eva.GiniIndex(top_n=cutoff),
                     eva.CatalogCoverage(catalog, top_n=cutoff),
-                    eva.DeltaGap(user_groups, top_n=cutoff)
+                    eva.DeltaGap(user_groups, top_n=cutoff),
+                    eva.LongTailDistr(out_dir=f'{results_path}w-All Items/Graphs/{run["fields"]}/{run["representation"]}/'),
+                    eva.PopProfileVsRecs(
+                        user_groups={'Blockbuster': 0.2, 'Niche': 0.2, 'Diverse': 0.6},
+                        out_dir=f'{results_path}w-All Items/Graphs/{run["fields"]}/{run["representation"]}/'),
+                    eva.PopRecsCorrelation(out_dir=f'{results_path}w-All Items/Graphs/{run["fields"]}/{run["representation"]}/')
                 ]
             )
             sys_result, users_result = em.fit()
                        
             sys_result.to_csv(
-                results_path + 'SYS/' +
+                results_path + 'SYS/AllItems/' +
                 filename(run['fields'], run['representation'], run['algorithm'], run['methodology'], cutoff))
 
             users_result.to_csv(
-                results_path + 'USER/' +
+                results_path + 'USER/AllItems/' +
                 filename(run['fields'], run['representation'], run['algorithm'], run['methodology'], cutoff))

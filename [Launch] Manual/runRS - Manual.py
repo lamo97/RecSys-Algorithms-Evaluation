@@ -16,8 +16,8 @@ path = 'D:/Repository/RecSys-Algorithms-Evaluation/'
 # genres,tags,reviews
 # description,genres,tags,reviews
 
-fields = ['description', 'genres', 'tags']    # INSERIRE QUI I CAMPI PER I QUALI EFFETTUARE LE PREDIZIONI
-fields_string = 'description,genres,tags' # INSERIRE QUI LA STRINGA FORMATA DAI CAMPI, SENZA SPAZI
+fields = ['description', 'genres', 'reviews']    # INSERIRE QUI I CAMPI PER I QUALI EFFETTUARE LE PREDIZIONI
+fields_string = 'description,genres,reviews'     # INSERIRE QUI LA STRINGA FORMATA DAI CAMPI, SENZA SPAZI
 
 # ------------------------ RAPPRESENTAZIONI -------------------------
 # 'SK-TFIDF', 'Word2Vec', 'Doc2Vec',
@@ -25,7 +25,7 @@ fields_string = 'description,genres,tags' # INSERIRE QUI LA STRINGA FORMATA DAI 
 # 'Word2Doc-GloVe','Sentence2Doc-Sbert'
 
 # inserire le rappresentazioni per le quali effettuare le predizioni
-representations_list = ['Sentence2Doc-Sbert']
+representations_list = ['GensimLSA']
 
 # contiene informazioni sull'esecuzione corrente
 run = {
@@ -43,7 +43,7 @@ if (run["dataset"] == '100k'):
 else:
     dataset_path = path + 'Dataset/Movielens 1M/'
 
-rs_path = path + f'RS Results {run["dataset"]}/'
+rs_path = path + f'[{run["dataset"]}] Result Ranks/'
 
 #apretura file dei ratings
 ratings = ca.Ratings(ca.CSVFile(dataset_path + 'ratings.csv'))
@@ -88,7 +88,7 @@ if(run['fields_num'] == 1):
 else:
     print("SI STA CERCANO DI ESEGUIRE L'ALGORITMO CON UN NUMERO DI CAMPI ERRATO!")
 
-# In SVC
+# In[] SVC
 if(run['fields_num'] == 1):
     for rep in representations_list:
         run['representation'] = rep
@@ -172,7 +172,6 @@ if(run['fields_num'] == 3):
         rsutils.predict(svc, run, train_list, test_list, ratings)
 else:
     print("SI STA CERCANO DI ESEGUIRE L'ALGORITMO CON UN NUMERO DI CAMPI ERRATO!")
-    
 
 
 # Algoritmi: ------------------------------------ 4 CAMPI ------------------------------------
