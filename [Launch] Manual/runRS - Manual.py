@@ -25,7 +25,7 @@ fields_string = 'description,genres,reviews'     # INSERIRE QUI LA STRINGA FORMA
 # 'Word2Doc-GloVe','Sentence2Doc-Sbert'
 
 # inserire le rappresentazioni per le quali effettuare le predizioni
-representations_list = ['GensimLSA']
+representations_list = ['Doc2Vec']
 
 # contiene informazioni sull'esecuzione corrente
 run = {
