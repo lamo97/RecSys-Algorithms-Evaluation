@@ -1,7 +1,0 @@
-Systems evaluated,item_id,score
-"('system_1', 'system_2')","Ttest_indResult(statistic=-3.879057220193481, pvalue=0.00010490739336745668)","Ttest_indResult(statistic=1.7701208422534367, pvalue=0.07670906951220988)"
-"('system_1', 'system_3')","Ttest_indResult(statistic=0.0, pvalue=1.0)","Ttest_indResult(statistic=0.0, pvalue=1.0)"
-"('system_1', 'system_4')","Ttest_indResult(statistic=-3.879057220193481, pvalue=0.00010490739336745668)","Ttest_indResult(statistic=1.7701208422534367, pvalue=0.07670906951220988)"
-"('system_2', 'system_3')","Ttest_indResult(statistic=3.879057220193481, pvalue=0.00010490739336745668)","Ttest_indResult(statistic=-1.7701208422534367, pvalue=0.07670906951220988)"
-"('system_2', 'system_4')","Ttest_indResult(statistic=0.0, pvalue=1.0)","Ttest_indResult(statistic=0.0, pvalue=1.0)"
-"('system_3', 'system_4')","Ttest_indResult(statistic=-3.879057220193481, pvalue=0.00010490739336745668)","Ttest_indResult(statistic=1.7701208422534367, pvalue=0.07670906951220988)"
