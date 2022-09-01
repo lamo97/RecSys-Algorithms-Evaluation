@@ -67,12 +67,6 @@ def evaluate(result_list, test_list, run):
                     eva.GiniIndex(top_n=cutoff),
                     eva.CatalogCoverage(catalog, top_n=cutoff),
                     eva.DeltaGap(user_groups, top_n=cutoff),
-                    eva.LongTailDistr(out_dir=f'{results_path}w-All Items/Graphs/{run["fields"]}/{run["representation"]}/'),
-                    eva.PopProfileVsRecs(
-                        user_groups={'Blockbuster': 0.2, 'Niche': 0.2, 'Diverse': 0.6},
-                        out_dir=f'{results_path}w-All Items/Graphs/{run["fields"]}/{run["representation"]}/'),
-                    eva.PopRecsCorrelation(out_dir=f'{results_path}w-All Items/Graphs/{run["fields"]}/{run["representation"]}/')
-                ]
             )
             sys_result, users_result = em.fit()
                        

@@ -25,18 +25,18 @@ def predict(algorithm, run, train_list, test_list, ratings):
     cbrs.fit()
 
     # Risultati con Test Ratings
-    #print(f'Running: {run["algorithm"]} w/Test Ratings')
-    #run['methodology'] = "Test Ratings"
-    #result_list = []
-#
-    #result_rank = cbrs.rank(test_set, methodology=rs.TestRatingsMethodology(), n_recs=10)
-    #result_list.append(result_rank)
-    #
-    ## salva il rank per gli utenti in un CSV
-    #filename = (run['fields'] + ' - '+ run['representation'] + ' - ' +  run['algorithm'] + ' - ' +  run['methodology'])
-    #result_rank.to_csv((rs_path + run['representation'] + '/'), filename, overwrite=True)
-#
-    #runEV.evaluate(result_list, test_list, run)
+    print(f'Running: {run["algorithm"]} w/Test Ratings')
+    run['methodology'] = "Test Ratings"
+    result_list = []
+
+    result_rank = cbrs.rank(test_set, methodology=rs.TestRatingsMethodology(), n_recs=10)
+    result_list.append(result_rank)
+    
+    # salva il rank per gli utenti in un CSV
+    filename = (run['fields'] + ' - '+ run['representation'] + ' - ' +  run['algorithm'] + ' - ' +  run['methodology'])
+    result_rank.to_csv((rs_path + run['representation'] + '/'), filename, overwrite=True)
+
+    runEV.evaluate(result_list, test_list, run)
 
     # Risultati con AllItems
     print("Running: All Items")
