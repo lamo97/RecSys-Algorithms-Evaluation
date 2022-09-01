@@ -43,11 +43,6 @@ https://colab.research.google.com/drive/1pOXvRY8lW9PQ2VmhQUmtZX4Y-MJfs1Yi?usp=sh
 		- 100k
 		- 1M
 
-### Ex.
-	python runCA.py plot,genres 100k
-	python runRS.py plot,genres all 100k
-	python runRS.py description Word2Vec 1M
-
 ### Combinazioni
 	description
     genres
