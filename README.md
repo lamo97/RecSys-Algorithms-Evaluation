@@ -1,12 +1,6 @@
 # RecSys-Algorithms-Evaluation
 Repository per la tesi su: "Studio del Popularity Bias degli Algoritmi di Content-Based Recommendation"
 
-Classi, Parametri e Metodi per le Rappresentazioni:<br />
-https://various-tax-737.notion.site/ClayRS-Representations-Classes-a31d730f141342bd8be5f9ac765e92ea
-
-Classi, Parametri e Metodi per le Raccomandazioni: <br />
-https://various-tax-737.notion.site/ClayRS-Modulo-recsys-439da14c12cf465dbafbd74457e9f8f5
-
 Notebooks di esempio:
 
 1o esempio
