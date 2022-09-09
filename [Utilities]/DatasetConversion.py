@@ -8,8 +8,6 @@ def convertToCsv(path = 'C:/Users/glamo/Desktop/Repository/RecSys-Algorithms-Eva
         'timestamp': []
     }
 
-    
-
     with open(path + 'ratings.dat') as ratings:
         for entry in ratings:
             entry = entry.split("::")

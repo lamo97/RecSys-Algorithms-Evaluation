@@ -5,7 +5,7 @@ import sys
 
 path = 'D:/Repository/RecSys-Algorithms-Evaluation/'
 
-# ------------- CAMPI ------------- 
+# ------------- FEATURES ------------- 
 # description
 # genres
 # tags
@@ -16,30 +16,20 @@ path = 'D:/Repository/RecSys-Algorithms-Evaluation/'
 # genres,tags,reviews
 # description,genres,tags,reviews
 
-# CONFIGURAZIONE CAMPI
-fields = ['reviews']
-fields_string = "reviews"
-dataset = "1M"
+# FEATURES CONFIGURATION
+fields = ['description','genres','tags']        # LIST of features that need to be represented by the Content Analyzer
+fields_string = "description,genres,tags"       # STRING of features separated by commas, used to determine the output path
+dataset = "1M"                                  # Dataset chosen for the experiments
 
 def config(representation):
-    if(sys.argv[2] == '100k'):
-        dataset_path = path + 'Dataset/Movielens 100k/'
-        
-        # configurazione del content analyzer
-        ca_config = ca.ItemAnalyzerConfig(
-            source = ca.JSONFile(dataset_path + 'items_info.json'),
-            id = 'movielens_id',
-            output_directory = f'{dataset_path}movies_codified/{fields_string}/{representation}/'
-        )
-    else:
-        dataset_path =  path + 'Dataset/Movielens 1M/'
-        
-        # configurazione del content analyzer
-        ca_config = ca.ItemAnalyzerConfig(
-            source = ca.CSVFile(dataset_path + 'movies-ml1m.csv'),
-            id = 'item',
-            output_directory = f'{dataset_path}movies_codified/{fields_string}/{representation}/'
-        )
+    dataset_path =  path + 'Dataset/Movielens 1M/'
+    
+    # CONTENT ANALYZER CONFIGURATION
+    ca_config = ca.ItemAnalyzerConfig(
+        source = ca.CSVFile(dataset_path + 'movies-ml1m.csv'),
+        id = 'item',
+        output_directory = f'{dataset_path}movies_codified/{fields_string}/{representation}/'
+    )
 
     return ca_config
 
