@@ -1,5 +1,5 @@
 # RecSys-Algorithms-Evaluation
-Repository fot my thesis on Study of the Popularity Bias of Content-Based Recommendation Algorithms (Studio del Popularity Bias degli Algoritmi di Content-Based Recommendation).
+Repository for my thesis on Study of the Popularity Bias of Content-Based Recommendation Algorithms (Studio del Popularity Bias degli Algoritmi di Content-Based Recommendation).
 
 These scripts were meant to be used just to run experiments for my thesis and hold just a demonstrative value.
 These scripts/notebooks are structured in such way in order to execute just the methods you need at the moment (the execution can, sometimes, take quite some time, due to the complexity of some algorithms and operations).
