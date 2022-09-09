@@ -14,8 +14,8 @@ In order to run this script on your machine, you need to:
 * run any other cell (depending on which representation you wish to generate)
 
 ## Recommender System: runRS - Manual.py
-The content represented by the Content Analyzer can be now used to generate predictions through the Recommender System. This script allows you to do so with 4 different algorithms.
-This script uses the methods defined in `runRSUtils.py` and `runEV.py`.
+The content represented by the Content Analyzer can be now used to generate predictions through the Recommender System. This script allows you to do so with 4 different algorithms.   
+This script uses the methods defined in `runRSUtils.py` and `runEV.py`.  
 By default, predictions will be generated with both "Test Ratings" and "All Items" methodology (the latter requires more computation time).
 Once the prediction phase is over, the script will invoke a few methods in from runEV.py, in order to evaluate the results (it should take just a few seconds).
 
