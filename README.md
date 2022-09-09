@@ -1,55 +1,44 @@
 # RecSys-Algorithms-Evaluation
-Repository per la tesi su: "Studio del Popularity Bias degli Algoritmi di Content-Based Recommendation"
+Repository for my thesis on Study of the Popularity Bias of Content-Based Recommendation Algorithms (Studio del Popularity Bias degli Algoritmi di Content-Based Recommendation).
 
-Notebooks di esempio:
+These scripts were meant to be used just to run experiments for my thesis and hold just a demonstrative value.
 
-1o esempio
-https://colab.research.google.com/drive/1oy-0zX5udiTNJ8mk3orimwK01R-6rjY1?usp=sharing
+These scripts/notebooks are structured in such way in order to execute just the methods you need at the moment (the execution can, sometimes, take quite some time, due to the complexity of some algorithms and operations).
+A code editor (like VS Code) with and extension that allows a notebook-like execution is needed.
+The cells ran one after another will be queued.
 
-3o esempio
-https://colab.research.google.com/drive/11OoyVLVpw7lfRHtCzAT6l-rWFa4F77AD?usp=sharing
+## Content Analyzer: runCA - Manual.py
+This script, structured in a "Jupiter Notebook" fashion, allows the execution of the Content Analyzer, and therefor, the serialization of items.
+### Usage
+In order to run this script on your machine, you need to:
+* run the first cell `# In[1]: Setup` with the appropriate values to config the CA
+* run any other cell (depending on which representation you wish to generate)
 
-4o esempio
-https://colab.research.google.com/drive/1ym8pspwGS-8vxAUu9xsdpTcV7LjHtzEe?usp=sharing
+## Recommender System: runRS - Manual.py
+The content represented by the Content Analyzer can be now used to generate predictions through the Recommender System. This script allows you to do so with 4 different algorithms.   
 
-5o esempio
-https://colab.research.google.com/drive/1pOXvRY8lW9PQ2VmhQUmtZX4Y-MJfs1Yi?usp=sharing
+This script uses the methods defined in `runRSUtils.py` and `runEV.py`.  
 
-## Args
-### runCA.py:
-	[1]: fields
-		- plot | genres		 		-> (dataset 100k)
-		- description | tags | genres | reviews -> (dataset 1M)
-	[2]: dataset
-		- 100k
-		- 1M
-		
-### runRS.py:
-	[1]: fields
-		- plot | genres		 		-> (dataset 100k)
-		- description | tags | genres | reviews -> (dataset 1M)
-	[2]: representations
-		- all
-		- SK-TFIDF
-    	- Word2Vec
-		- Doc2Vec 
-    	- GensimLDA
-		- GensimRandomIndexing
-		- GensimFastText
-		- GensimLSA
-    	- Word2Doc-GloVe
-		- Sentence2Doc-Sbert
-	[3]: dataset
-		- 100k
-		- 1M
+By default, predictions will be generated with both "Test Ratings" and "All Items" methodology (the latter requires more computation time).
+Once the prediction phase is over, the script will invoke a few methods in from runEV.py, in order to evaluate the results (it should take just a few seconds).
 
-### Combinazioni
-	description
-    genres
-    tags
-    reviews
-    description,genres,tags
-    description,genres,reviews
-    description,tags,reviews
-    genres,tags,reviews
-    description,genres,tags,reviews
+### Usage
+In order to run this script on your machine, you need to:
+* customize the required values in `runRSUtils.py` (`path`, mostly)
+* run the first cell `# In[1]: Setup` with the appropriate values to config the RS
+* choose the cell corrisponding to the algorithm you wish to generate predictions with (mind the number of features)
+
+## Evaluation Module: runEV.py
+This script contains methods used to evaluate the results obtained from the Recommender System.
+The evaluation metrics are:
+* Precision
+* Recall
+* F-Measure
+* NDCG
+* MRR
+* Gini Index
+* Catalog Coverage
+* Delta GAP
+
+### Usage
+Customize the `path` and any other value concerning the metrics you wish; the methods will be invoked by the other scripts.
