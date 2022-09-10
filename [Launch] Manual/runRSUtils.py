@@ -30,7 +30,7 @@ def predict(algorithm, run, train_list, test_list, ratings):
     result_rank = cbrs.rank(test_set, methodology=rs.TestRatingsMethodology(), n_recs=10)
     result_list.append(result_rank)
     
-    # salva il rank per gli utenti in un CSV
+    # Result Rank is saved on file
     filename = (run['fields'] + ' - '+ run['representation'] + ' - ' +  run['algorithm'] + ' - ' +  run['methodology'])
     result_rank.to_csv((rs_path + run['representation'] + '/'), filename, overwrite=True)
 
