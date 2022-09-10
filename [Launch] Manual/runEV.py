@@ -3,27 +3,25 @@ from clayrs import evaluation as eva
 
 path = 'D:/Repository/RecSys-Algorithms-Evaluation/'
 
+# Returns the filename based on the parameters
 def filename(fields, representation, algorithm, methodology, cutoff):
     return (representation + '/' + fields + ' - ' + representation + ' - '
     + algorithm + ' (' + methodology + '@' + str(cutoff) + ').csv')
 
 def evaluate(result_list, test_list, run):
-    if (run["dataset"] == '100k'):
-        dataset_path = path + 'Dataset/Movielens 100k/'
-        results_path = path + '[100k] Evaluation Results/'
-    else:
-        dataset_path = path + 'Dataset/Movielens 1M/'
-        results_path = path + '[1M] Evaluation Results/'
+    dataset_path = path + 'Dataset/Movielens 1M/'
+    results_path = path + '[1M] Evaluation Results/'   # Output path
 
     ratings = ca.Ratings(ca.CSVFile(dataset_path + 'ratings.csv'))
 
+    # Lists of cutoffs per methodology
     TestRatings_cutoffs = [5,10]
     AllItems_cutoffs = [10,20]
 
-    # catalog per la catalog coverage
+    # Catalog for Catalog Coverage
     catalog = set(ratings.item_id_column)   
 
-    # user group per il Delta GAP
+    # User Group for Delta GAP
     user_groups = {'Blockbuster': 0.2, 'Niche': 0.2, 'Diverse': 0.6} 
 
     if(run["methodology"] == 'Test Ratings'):
@@ -67,6 +65,7 @@ def evaluate(result_list, test_list, run):
                     eva.GiniIndex(top_n=cutoff),
                     eva.CatalogCoverage(catalog, top_n=cutoff),
                     eva.DeltaGap(user_groups, top_n=cutoff),
+                ]
             )
             sys_result, users_result = em.fit()
                        

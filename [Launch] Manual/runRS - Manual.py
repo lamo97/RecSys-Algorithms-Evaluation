@@ -1,11 +1,11 @@
-# In[]: Setup e imports
+# In[1]: Setup and Imports
 from clayrs import content_analyzer as ca
 from clayrs import recsys as rs
 import runRSUtils as rsutils
 
 path = 'D:/Repository/RecSys-Algorithms-Evaluation/'
 
-# ------------- CAMPI ------------- 
+# ------------- FEATURES ------------- 
 # description
 # genres
 # tags
@@ -16,18 +16,18 @@ path = 'D:/Repository/RecSys-Algorithms-Evaluation/'
 # genres,tags,reviews
 # description,genres,tags,reviews
 
-fields = ['description', 'genres', 'reviews']    # INSERIRE QUI I CAMPI PER I QUALI EFFETTUARE LE PREDIZIONI
-fields_string = 'description,genres,reviews'     # INSERIRE QUI LA STRINGA FORMATA DAI CAMPI, SENZA SPAZI
+fields = ['description', 'genres', 'reviews']    # LIST of features used for the predictions
+fields_string = 'description,genres,reviews'     # STRING of features separated by commas, used to determine the output path
 
-# ------------------------ RAPPRESENTAZIONI -------------------------
+# ------------------------ REPRESENTATIONS -------------------------
 # 'SK-TFIDF', 'Word2Vec', 'Doc2Vec',
 # 'GensimLDA','GensimRandomIndexing', 'GensimFastText', 'GensimLSA', 
 # 'Word2Doc-GloVe','Sentence2Doc-Sbert'
 
-# inserire le rappresentazioni per le quali effettuare le predizioni
+# LIST of representations used for the predictions
 representations_list = ['Doc2Vec']
 
-# contiene informazioni sull'esecuzione corrente
+# Info on the current run
 run = {
     "fields_num" : len(fields),
     "fields" : fields_string,
@@ -37,24 +37,22 @@ run = {
     "methodology" : ""
 }
 
-# scelta del dataset
-if (run["dataset"] == '100k'):
-    dataset_path = path + 'Dataset/Movielens 100k/'
-else:
-    dataset_path = path + 'Dataset/Movielens 1M/'
+# Chosed dataset for the experiments
+dataset_path = path + 'Dataset/Movielens 1M/'
 
+# Result Ranks' path
 rs_path = path + f'[{run["dataset"]}] Result Ranks/'
 
-#apretura file dei ratings
+# Opens the ratings file
 ratings = ca.Ratings(ca.CSVFile(dataset_path + 'ratings.csv'))
 
-# split del dataset
+# Dataset Split
 train_list, test_list = rs.HoldOutPartitioning(train_set_size=0.8).split_all(ratings)
 
-# salvataggio della ground truth su file
+# Ground truth saved on file (for the current run, overwritten next time the script is launched)
 test_list[0].to_csv(rs_path, 'test_set', overwrite=True)
 
-# Algoritmi: ------------------------------------ 1 CAMPO ------------------------------------
+# Algorithms: ------------------------------------ 1 FEATURE ------------------------------------
 # In[]: Centroid Vector
 if(run['fields_num'] == 1):
     for rep in representations_list:
@@ -64,7 +62,7 @@ if(run['fields_num'] == 1):
         run['algorithm'] = "Centroid Vector"
         rsutils.predict(centroid_vector, run, train_list, test_list, ratings)
 else:
-    print("SI STA CERCANO DI ESEGUIRE L'ALGORITMO CON UN NUMERO DI CAMPI ERRATO!")
+    print("WRONG NUMBER OF FEATURES!")
 
 # In[]: Logistic Regression
 if(run['fields_num'] == 1):
@@ -75,7 +73,7 @@ if(run['fields_num'] == 1):
         run['algorithm'] = "Logistic Regression"
         rsutils.predict(logistic_regression, run, train_list, test_list, ratings)
 else:
-    print("SI STA CERCANO DI ESEGUIRE L'ALGORITMO CON UN NUMERO DI CAMPI ERRATO!")
+    print("WRONG NUMBER OF FEATURES!")
 
 # In[] Random Forests
 if(run['fields_num'] == 1):
@@ -86,7 +84,7 @@ if(run['fields_num'] == 1):
         run['algorithm'] = "Random Forest"
         rsutils.predict(random_forests, run, train_list, test_list, ratings)
 else:
-    print("SI STA CERCANO DI ESEGUIRE L'ALGORITMO CON UN NUMERO DI CAMPI ERRATO!")
+    print("WRONG NUMBER OF FEATURES!")
 
 # In[] SVC
 if(run['fields_num'] == 1):
@@ -97,10 +95,10 @@ if(run['fields_num'] == 1):
         run['algorithm'] = "SVC"
         rsutils.predict(svc, run, train_list, test_list, ratings)
 else:
-    print("SI STA CERCANO DI ESEGUIRE L'ALGORITMO CON UN NUMERO DI CAMPI ERRATO!")
+    print("WRONG NUMBER OF FEATURES!")
 
 
-# Algoritmi: ------------------------------------ 3 CAMPI ------------------------------------
+# Algorithms: ------------------------------------ 3 FEATURES ------------------------------------
 # In[]: Centroid Vector
 if(run['fields_num'] == 3):
     for rep in representations_list:
@@ -117,7 +115,7 @@ if(run['fields_num'] == 3):
         run['algorithm'] = "Centroid Vector"
         rsutils.predict(centroid_vector, run, train_list, test_list, ratings)
 else:
-    print("SI STA CERCANO DI ESEGUIRE L'ALGORITMO CON UN NUMERO DI CAMPI ERRATO!")
+    print("WRONG NUMBER OF FEATURES!")
     
 # In[]: Logistic Regression
 if(run['fields_num'] == 3):
@@ -135,7 +133,7 @@ if(run['fields_num'] == 3):
         run['algorithm'] = "Logistic Regression"
         rsutils.predict(logistic_regression, run, train_list, test_list, ratings)
 else:
-    print("SI STA CERCANO DI ESEGUIRE L'ALGORITMO CON UN NUMERO DI CAMPI ERRATO!")
+    print("WRONG NUMBER OF FEATURES!")
     
 # In[]: Random Forests
 if(run['fields_num'] == 3):
@@ -153,7 +151,7 @@ if(run['fields_num'] == 3):
         run['algorithm'] = "Random Forest"
         rsutils.predict(random_forests, run, train_list, test_list, ratings)
 else:
-    print("SI STA CERCANO DI ESEGUIRE L'ALGORITMO CON UN NUMERO DI CAMPI ERRATO!")
+    print("WRONG NUMBER OF FEATURES!")
     
 # In[]: SVC
 if(run['fields_num'] == 3):
@@ -171,10 +169,10 @@ if(run['fields_num'] == 3):
         run['algorithm'] = "SVC"
         rsutils.predict(svc, run, train_list, test_list, ratings)
 else:
-    print("SI STA CERCANO DI ESEGUIRE L'ALGORITMO CON UN NUMERO DI CAMPI ERRATO!")
+    print("WRONG NUMBER OF FEATURES!")
 
 
-# Algoritmi: ------------------------------------ 4 CAMPI ------------------------------------
+# Algorithm: ------------------------------------ 4 FEATURES ------------------------------------
 # In[]: Centroid Vector
 if(run['fields_num'] == 4):
     for rep in representations_list:
@@ -192,7 +190,7 @@ if(run['fields_num'] == 4):
         run['algorithm'] = "Centroid Vector"
         rsutils.predict(centroid_vector, run, train_list, test_list, ratings)
 else:
-    print("SI STA CERCANO DI ESEGUIRE L'ALGORITMO CON UN NUMERO DI CAMPI ERRATO!")
+    print("WRONG NUMBER OF FEATURES!")
     
 # In[]: Logistic Regression
 if(run['fields_num'] == 4):
@@ -211,7 +209,7 @@ if(run['fields_num'] == 4):
         run['algorithm'] = "Logistic Regression"
         rsutils.predict(logistic_regression, run, train_list, test_list, ratings)
 else:
-    print("SI STA CERCANO DI ESEGUIRE L'ALGORITMO CON UN NUMERO DI CAMPI ERRATO!")
+    print("WRONG NUMBER OF FEATURES!")
     
 # In[]: Random Forests
 if(run['fields_num'] == 4):
@@ -230,7 +228,7 @@ if(run['fields_num'] == 4):
         run['algorithm'] = "Random Forest"
         rsutils.predict(random_forests, run, train_list, test_list, ratings)
 else:
-    print("SI STA CERCANO DI ESEGUIRE L'ALGORITMO CON UN NUMERO DI CAMPI ERRATO!")
+    print("WRONG NUMBER OF FEATURES!")
     
 # In[]: SVC
 if(run['fields_num'] == 4):
@@ -248,6 +246,6 @@ if(run['fields_num'] == 4):
         run['algorithm'] = "SVC"
         rsutils.predict(svc, run, train_list, test_list, ratings)
 else:
-    print("SI STA CERCANO DI ESEGUIRE L'ALGORITMO CON UN NUMERO DI CAMPI ERRATO!")
+    print("WRONG NUMBER OF FEATURES!")
             
 # %%
